@@ -109,7 +109,7 @@ export default {
       if (this.$route.query.type === 0) {
         promise = getCommentOfSongId(this.$route.query.id)
       } else if (this.$route.query.type === 1) {
-        promise = getCommentOfSongListId(this.$.query.id)
+        promise = getCommentOfSongListId(this.$route.query.id)
       }
       promise.then(res => {
         for (let item of res) {
@@ -121,7 +121,7 @@ export default {
       getUserOfId(id)
         .then(res => {
           let o = item
-          o.name = res[0].username
+          o.name = res.data.username
           this.tableData.push(o)
           this.tempDate.push(o)
         })
@@ -155,7 +155,7 @@ export default {
       // params.append('up', this.form.up)
       updateCommentMsg(this.form)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.getData()
             this.notify('编辑成功', 'success')
           } else {
@@ -171,7 +171,7 @@ export default {
     deleteRow () {
       deleteComment(this.idx)
         .then(res => {
-          if (res) {
+          if (res.status === 200) {
             this.getData()
             this.notify('删除成功', 'success')
           } else {

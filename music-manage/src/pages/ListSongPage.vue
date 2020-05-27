@@ -111,8 +111,8 @@ export default {
       this.tempDate = []
       getListSongOfSongId(this.$route.query.id)
         .then(res => {
-          console.log(res)
-          for (let item of res) {
+          console.log(res.data)
+          for (let item of res.data) {
             this.getSong(item.songId)
           }
         })
@@ -124,8 +124,9 @@ export default {
     getSong (id) {
       getSongOfId(id)
         .then(res => {
-          this.tableData.push(res[0])
-          this.tempDate.push(res[0])
+          console.log(res.data)
+          this.tableData.push(res.data)
+          this.tempDate.push(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -137,7 +138,7 @@ export default {
       var id = _this.registerForm.singerName + '-' + _this.registerForm.songName
       getSongOfSingerName(id)
         .then(res => {
-          this.addSong(res[0].id)
+          this.addSong(res.data.id)
         })
     },
     // 添加歌曲
@@ -148,7 +149,7 @@ export default {
       let listSongData = {'songId': id, 'songListId': this.$route.query.id}
       setListSong(listSongData)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.getData()
             this.notify('添加成功', 'success')
           } else {

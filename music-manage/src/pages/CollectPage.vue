@@ -96,8 +96,9 @@ export default {
     getSongList (id) {
       getSongOfId(id)
         .then(res => {
-          this.tableData.push(res[0])
-          this.tempDate.push(res[0])
+          console.log(res.data)
+          this.tableData.push(res.data)
+          this.tempDate.push(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -107,7 +108,7 @@ export default {
     deleteRow () {
       deleteCollection(this.$route.query.id, this.idx.id)
         .then(res => {
-          if (res) {
+          if (res.status === 200) {
             this.getData()
             this.notify('删除成功', 'success')
           } else {

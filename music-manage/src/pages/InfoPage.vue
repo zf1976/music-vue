@@ -172,9 +172,9 @@ export default {
   methods: {
     getUser () {
       getAllUser().then(res => {
-        this.userCount = res.length
-        this.userSex.rows[0]['总数'] = this.setSex(1, res)
-        this.userSex.rows[1]['总数'] = this.setSex(0, res)
+        this.userCount = res.data.length
+        this.userSex.rows[0]['总数'] = this.setSex(1, res.data)
+        this.userSex.rows[1]['总数'] = this.setSex(0, res.data)
       })
     },
     setSex (sex, arr) {
@@ -203,10 +203,10 @@ export default {
     },
     getSinger () {
       getAllSinger().then(res => {
-        this.singerCount = res.length
-        this.singerSex.rows[0]['总数'] = this.setSex(1, res)
-        this.singerSex.rows[1]['总数'] = this.setSex(0, res)
-        for (let item of res) {
+        this.singerCount = res.data.length
+        this.singerSex.rows[0]['总数'] = this.setSex(1, res.data)
+        this.singerSex.rows[1]['总数'] = this.setSex(0, res.data)
+        for (let item of res.data) {
           this.getCountry(item.location)
         }
       }).catch(err => {
@@ -215,15 +215,15 @@ export default {
     },
     getSong () {
       getAllSong().then(res => {
-        this.songCount = res.length
+        this.songCount = res.data.length
       }).catch(err => {
         console.log(err)
       })
     },
     getSongList () {
       getSongList().then(res => {
-        this.songListCount = res.length
-        for (let item of res) {
+        this.songListCount = res.data.length
+        for (let item of res.data) {
           this.getStyle(item.style)
         }
       }).catch(err => {

@@ -17,6 +17,7 @@ export const addUser = (params) => post(`api/admin/user/add`, params)
 export const updateUserMsg = (params) => post(`api/admin/user/update`, params)
 // 删除用户
 export const deleteUser = (id) => get(`api/admin/user/delete?id=${id}`)
+
 export const selectEmail = (email) => post(`api/admin/user/selectEmail?email=${email}`)
 export const selectPhone = (phone) => post(`api/admin/user/selectPhone?phone=${phone}`)
 
@@ -56,7 +57,7 @@ export const getSongOfSingerId = (id) => get(`api/admin/song/singer/detail?singe
 // 返回的指定用户ID收藏列表
 export const getSongOfId = (id) => get(`api/admin/song/detail?id=${id}`)
 // 返回指定歌手名的歌曲
-export const getSongOfSingerName = (id) => get(`api/admin/song/singerName/detail?name=${id}`)
+export const getSongOfSingerName = (id) => get(`api/admin/song/singerName?name=${id}`)
 // 更新歌曲信息
 export const updateSongMsg = (params) => post(`api/admin/song/update`, params)
 // 删除歌曲

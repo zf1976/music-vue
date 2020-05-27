@@ -234,9 +234,9 @@ export default {
       this.tableData = []
       this.tempDate = []
       getSongOfSingerId(this.singerId).then((res) => {
-        console.log('歌手作品===========>', res)
-        this.tableData = res
-        this.tempDate = res
+        console.log('歌手作品===========>', res.data)
+        this.tableData = res.data
+        this.tempDate = res.data
         this.currentPage = 1
       }).catch(err => {
         console.log(err)
@@ -275,7 +275,7 @@ export default {
       this.currentPage = val
     },
     handleSongSuccess (res, file) {
-      if (res.code === 1) {
+      if (res.status === 200) {
         this.getData()
         this.notify('上传成功', 'success')
       } else {
@@ -329,13 +329,13 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      let params = new URLSearchParams()
-      params.append('id', this.form.id)
-      params.append('singerId', this.form.singerId)
-      params.append('name', this.form.name)
-      params.append('introduction', this.form.introduction)
-      params.append('lyric', this.form.lyric)
-      updateSongMsg(params)
+      // let params = new URLSearchParams()
+      // params.append('id', this.form.id)
+      // params.append('singerId', this.form.singerId)
+      // params.append('name', this.form.name)
+      // params.append('introduction', this.form.introduction)
+      // params.append('lyric', this.form.lyric)
+      updateSongMsg(this.form)
         .then(res => {
           if (res) {
             this.getData()

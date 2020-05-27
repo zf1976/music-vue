@@ -130,7 +130,8 @@ export default {
       registerForm: {
         title: '',
         introduction: '',
-        style: ''
+        style: '',
+        pic: '/data/img/songListPic/123.jpg'
       },
       tableData: [],
       tempDate: [],
@@ -183,8 +184,8 @@ export default {
       this.tableData = []
       this.tempDate = []
       getSongList().then((res) => {
-        this.tableData = res
-        this.tempDate = res
+        this.tableData = res.data
+        this.tempDate = res.data
         this.currentPage = 1
       })
     },
@@ -212,15 +213,15 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      let params = new URLSearchParams()
-      params.append('id', this.form.id)
-      params.append('title', this.form.title)
-      params.append('pic', this.form.pic)
-      params.append('introduction', this.form.introduction)
-      params.append('style', this.form.style)
-      updateSongListMsg(params)
+      // let params = new URLSearchParams()
+      // params.append('id', this.form.id)
+      // params.append('title', this.form.title)
+      // params.append('pic', this.form.pic)
+      // params.append('introduction', this.form.introduction)
+      // params.append('style', this.form.style)
+      updateSongListMsg(this.form)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.notify('编辑成功', 'success')
             this.getData()
           } else {
@@ -234,13 +235,13 @@ export default {
     },
     // 添加歌单
     addsongList () {
-      let params = new URLSearchParams()
-      params.append('title', this.registerForm.title)
-      params.append('pic', '/img/songListPic/123.jpg')
-      params.append('introduction', this.registerForm.introduction)
-      params.append('style', this.registerForm.style)
-      setSongList(params).then(res => {
-        if (res.code === 1) {
+      // let params = new URLSearchParams()
+      // params.append('title', this.registerForm.title)
+      // params.append('pic', '/data/img/songListPic/123.jpg')
+      // params.append('introduction', this.registerForm.introduction)
+      // params.append('style', this.registerForm.style)
+      setSongList(this.registerForm).then(res => {
+        if (res.status === 200) {
           this.getData()
           this.registerForm = {}
           this.notify('添加成功', 'success')
@@ -256,7 +257,7 @@ export default {
     deleteRow () {
       deleteSongList(this.idx)
         .then(res => {
-          if (res) {
+          if (res.status === 200) {
             this.getData()
             this.notify('删除成功', 'success')
           } else {

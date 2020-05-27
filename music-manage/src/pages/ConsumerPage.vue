@@ -31,7 +31,7 @@
         <el-table-column label="手机号码" prop="phoneNum" width="120" align="center"></el-table-column>
         <el-table-column label="邮箱" prop="email" width="120" align="center"></el-table-column>
         <el-table-column label="生日" width="120" align="center">
-            <template slot-scope="scope" format="yyyy-MM-dd HH:mm">
+            <template slot-scope="scope" format="yyyy-MM-dd ">
                 <div>{{attachBirth(scope.row.birth)}}</div>
             </template>
         </el-table-column>
@@ -83,7 +83,7 @@
           <el-input v-model="registerForm.email" placeholder="邮箱"></el-input>
         </el-form-item>
         <el-form-item label="生日" prop="birth" size="mini">
-            <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+            <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" align="right"></el-date-picker>
         </el-form-item>
         <el-form-item label="签名" prop="introduction" size="mini">
           <el-input  type="textarea" placeholder="签名" v-model="registerForm.introduction" ></el-input>
@@ -122,7 +122,7 @@
           <el-input v-model="form.email"></el-input>
         </el-form-item>
         <el-form-item label="生日" prop="birth" size="mini">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
         </el-form-item>
         <el-form-item label="签名" size="mini">
           <el-input v-model="form.introduction"></el-input>
@@ -162,7 +162,7 @@ export default {
     return {
       registerForm: { // 注册
         username: '',
-        password: '',
+        // password: '',
         sex: '',
         phoneNum: '',
         email: '',
@@ -312,7 +312,7 @@ export default {
       form: { // 记录编辑的信息
         id: '',
         username: '',
-        password: '',
+        // password: '',
         sex: '',
         phoneNum: '',
         email: '',
@@ -373,9 +373,6 @@ export default {
     },
     // 添加用户
     addPeople () {
-      let d = new Date(this.registerForm.birth)
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      this.registerForm.birth = datetime
       // let params = new URLSearchParams()
       // params.append('username', this.registerForm.username)
       // params.append('password', this.registerForm.password)
@@ -409,25 +406,13 @@ export default {
         this.notify('请选择出生年月', 'error')
         return
       }
-      // selectEmail(formObj.email)
-      //   .then(res => {
-      //     console.log(res)
-      //   }).catch(err => {
-      //     this.notify('邮箱已存在', 'error')
-      //     console.log(err)
-      //   })
-      // selectPhone(formObj.phoneNum)
-      //   .then(res => {
-      //     console.log(res)
-      //   }).catch(err => {
-      //     this.notify('邮箱已存在', 'error')
-      //     console.log(err)
-      //   })
       addUser(this.registerForm)
         .then(res => {
           if (res.status === 200) {
             this.getData()
             this.notify('添加成功', 'success')
+          } else {
+            this.notify('添加失败', 'error')
           }
         })
         .catch(err => {
@@ -448,7 +433,7 @@ export default {
       this.form = {
         id: row.id,
         username: row.username,
-        password: row.password,
+        // password: row.password,
         sex: row.sex,
         phoneNum: row.phoneNum,
         email: row.email,
@@ -457,12 +442,11 @@ export default {
         location: row.location,
         avatar: row.avatar
       }
+      this.registerForm = {}
       this.editVisible = true
     },
     // 保存编辑
     saveEdit () {
-      let d = new Date(this.form.birth)
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
       // let params = new URLSearchParams()
       // params.append('id', this.form.id)
       // params.append('username', this.form.username)
@@ -473,12 +457,12 @@ export default {
       // params.append('birth', datetime)
       // params.append('introduction', this.form.introduction)
       // params.append('location', this.form.location)
-      d = datetime
-      this.form.birth = d
       updateUserMsg(this.form).then(res => {
         if (res.status === 200) {
           this.getData()
           this.notify('修改成功', 'success')
+        } else {
+          this.notify('修改失败', 'error')
         }
       }).catch(err => {
         if (err.data.errCode === 402) {

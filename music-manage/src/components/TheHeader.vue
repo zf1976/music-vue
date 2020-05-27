@@ -4,7 +4,7 @@
     <div class="collapse-btn" @click="collapseChage">
       <i class="el-icon-menu"></i>
     </div>
-    <div class="logo">Yin-music 后台管理</div>
+    <div class="logo">Music 后台管理</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏显示 -->
@@ -107,7 +107,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 70px;
-  font-size: 22px;
+  font-size: 18px;
   color: #fff;
 }
 .collapse-btn {

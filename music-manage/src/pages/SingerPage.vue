@@ -220,16 +220,17 @@ export default {
     addsinger () {
       let d = this.registerForm.birth
       let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      let params = new URLSearchParams()
-      params.append('name', this.registerForm.name)
-      params.append('sex', this.registerForm.sex)
-      params.append('pic', '/img/singerPic/hhh.jpg')
-      params.append('birth', datetime)
-      params.append('location', this.registerForm.location)
-      params.append('introduction', this.registerForm.introduction)
-      setSinger(params)
+      // let params = new URLSearchParams()
+      // params.append('name', this.registerForm.name)
+      // params.append('sex', this.registerForm.sex)
+      // params.append('pic', '/img/singerPic/hhh.jpg')
+      // params.append('birth', datetime)
+      // params.append('location', this.registerForm.location)
+      // params.append('introduction', this.registerForm.introduction)
+      this.registerForm.birth = datetime
+      setSinger(this.registerForm)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.getData()
             this.registerForm = {}
             this.notify('添加成功', 'success')
@@ -247,8 +248,8 @@ export default {
       this.tableData = []
       this.tempDate = []
       getAllSinger().then(res => {
-        this.tableData = res
-        this.tempDate = res
+        this.tableData = res.data
+        this.tempDate = res.data
         this.currentPage = 1
       })
     },
@@ -271,17 +272,18 @@ export default {
     saveEdit () {
       let d = new Date(this.form.birth)
       let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      let params = new URLSearchParams()
-      params.append('id', this.form.id)
-      params.append('name', this.form.name)
-      params.append('sex', this.form.sex)
-      params.append('pic', this.form.pic)
-      params.append('birth', datetime)
-      params.append('location', this.form.location)
-      params.append('introduction', this.form.introduction)
-      updateSingerMsg(params)
+      // let params = new URLSearchParams()
+      // params.append('id', this.form.id)
+      // params.append('name', this.form.name)
+      // params.append('sex', this.form.sex)
+      // params.append('pic', this.form.pic)
+      // params.append('birth', datetime)
+      // params.append('location', this.form.location)
+      // params.append('introduction', this.form.introduction)
+      this.form.birth = datetime
+      updateSingerMsg(this.form)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.getData()
             this.notify('编辑成功', 'success')
           } else {
