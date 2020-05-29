@@ -215,7 +215,7 @@ export default {
       this.currentPage = val
     },
     uploadUrl (id) {
-      return `${this.$store.state.HOST}/singer/avatar/update?id=${id}`
+      return `${this.$store.state.HOST}/api/admin/singer/avatar/update?id=${id}`
     },
     // 添加歌手
     addsinger () {

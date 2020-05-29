@@ -66,7 +66,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { setListSong, getListSongOfSongId, deleteListSong, getSongOfId, getSongOfSingerName } from '../api/index'
+import { setListSong, getSongBySongListId, deleteListSong, getSongOfId, getSongOfSingerName } from '../api/index'
 
 export default {
   name: 'list-song-page',
@@ -93,7 +93,7 @@ export default {
         this.tableData = this.tempDate
       } else {
         this.tableData = []
-        for (let item of this.tempDate) {
+        for (let item of this.tempDate.data) {
           if (item.name.includes(this.select_word)) {
             this.tableData.push(item)
           }
@@ -109,7 +109,7 @@ export default {
     getData () {
       this.tableData = []
       this.tempDate = []
-      getListSongOfSongId(this.$route.query.id)
+      getSongBySongListId(this.$route.query.id)
         .then(res => {
           console.log(res.data)
           for (let item of res.data) {
@@ -135,19 +135,24 @@ export default {
     // 获取要添加歌曲的ID
     getSongId () {
       let _this = this
-      var id = _this.registerForm.singerName + '-' + _this.registerForm.songName
-      getSongOfSingerName(id)
+      var name = _this.registerForm.singerName + '-' + _this.registerForm.songName
+      console.log(name)
+      getSongOfSingerName(name)
         .then(res => {
-          this.addSong(res.data.id)
+          // 根据歌手名字返回歌手id
+          if (res.status === 200) {
+            console.log(res)
+            this.addSong(res.data.id)
+          }
         })
     },
     // 添加歌曲
     addSong (id) {
-      // let params = new URLSearchParams()
-      // params.append('songId', id)
-      // params.append('songListId', this.$route.query.id)
-      let listSongData = {'songId': id, 'songListId': this.$route.query.id}
-      setListSong(listSongData)
+      let params = new URLSearchParams()
+      params.append('songId', id)
+      params.append('songListId', this.$route.query.id)
+      // let listSongData = {'songId': id, 'songListId': this.$route.query.id}
+      setListSong(params)
         .then(res => {
           if (res.status === 200) {
             this.getData()
@@ -163,9 +168,10 @@ export default {
     },
     // 确定删除
     deleteRow () {
-      deleteListSong(this.idx)
+      // 歌手id this.idx 歌单id this.$route.query.id
+      deleteListSong(this.idx, this.$route.query.id)
         .then(res => {
-          if (res) {
+          if (res.status === 200) {
             this.getData()
             this.notify('删除成功', 'success')
           } else {

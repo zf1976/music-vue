@@ -177,7 +177,7 @@ export default {
   },
   methods: {
     uploadUrl (id) {
-      return `${this.$store.state.HOST}/songList/img/update?id=${id}`
+      return `${this.$store.state.HOST}/api/admin/songList/img/update?id=${id}`
     },
     // 获取歌单信息
     getData () {

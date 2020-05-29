@@ -67,7 +67,7 @@ export default {
         this.tableData = this.tempDate
       } else {
         this.tableData = []
-        for (let item of this.tempDate) {
+        for (let item of this.tempDate.data) {
           if (item.name.includes(this.select_word)) {
             this.tableData.push(item)
           }

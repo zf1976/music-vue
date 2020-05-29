@@ -253,11 +253,11 @@ export default {
     },
     // 更新歌曲图片
     uploadUrl (id) {
-      return `${this.$store.state.HOST}/song/img/update?id=${id}`
+      return `${this.$store.state.HOST}/api/admin/song/img/update?id=${id}`
     },
     // 更新歌曲url
     uploadSongUrl (id) {
-      return `${this.$store.state.HOST}/song/url/update?id=${id}`
+      return `${this.$store.state.HOST}/api/admin/song/url/update?id=${id}`
     },
     beforeSongUpload (file) {
       var testmsg = file.name.substring(file.name.lastIndexOf('.') + 1)

@@ -386,23 +386,23 @@ export default {
       // this.registerForm.avatar.value = 'data/img/user.jpg'
       // eslint-disable-next-line no-undef
       let formObj = this.registerForm
-      if (formObj.username === '') {
+      if (formObj.username === null) {
         this.notify('请输入用户名', 'error')
         return
       }
-      if (formObj.sex === '') {
+      if (formObj.sex === null) {
         this.notify('请选择性别', 'error')
         return
       }
-      if (formObj.phoneNum === '') {
+      if (formObj.phoneNum === null) {
         this.notify('请选择手机号', 'error')
         return
       }
-      if (formObj.email === '') {
+      if (formObj.email === null) {
         this.notify('请输入邮箱', 'error')
         return
       }
-      if (formObj.birth === '') {
+      if (formObj.birth === null) {
         this.notify('请选择出生年月', 'error')
         return
       }
@@ -447,6 +447,23 @@ export default {
     },
     // 保存编辑
     saveEdit () {
+      let formObj = this.form
+      if (formObj.sex === null) {
+        this.notify('请选择性别', 'error')
+        return
+      }
+      if (formObj.phoneNum === null) {
+        this.notify('请选择手机号', 'error')
+        return
+      }
+      if (formObj.email === null) {
+        this.notify('请输入邮箱', 'error')
+        return
+      }
+      if (formObj.birth === null) {
+        this.notify('请选择出生年月', 'error')
+        return
+      }
       // let params = new URLSearchParams()
       // params.append('id', this.form.id)
       // params.append('username', this.form.username)

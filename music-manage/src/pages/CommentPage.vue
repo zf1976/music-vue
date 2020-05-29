@@ -112,7 +112,7 @@ export default {
         promise = getCommentOfSongListId(this.$route.query.id)
       }
       promise.then(res => {
-        for (let item of res) {
+        for (let item of res.data) {
           this.getUsers(item.userId, item)
         }
       })
