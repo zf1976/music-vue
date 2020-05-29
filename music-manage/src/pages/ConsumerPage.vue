@@ -169,7 +169,7 @@ export default {
         birth: '',
         introduction: '',
         location: '',
-        avatar: '/data/img/user.jpg'
+        avatar: '/data/img/tubiao.jpg'
       },
       cities: [{
         value: '北京',
@@ -356,7 +356,7 @@ export default {
       this.currentPage = val
     },
     uploadUrl (id) {
-      return `${this.$store.state.HOST}/user/avatar/update?id=${id}`
+      return `${this.$store.state.HOST}/api/admin/user/avatar/update?id=${id}`
     },
     // 获取用户信息
     getData () {

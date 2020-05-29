@@ -30,7 +30,7 @@
             <div>{{changeSex(scope.row.sex) }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="出生" width="120" align="center">
+        <el-table-column label="出生" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" width="120" align="center">
           <template slot-scope="scope">
               <div>{{attachBirth(scope.row.birth) }}</div>
           </template>
@@ -93,6 +93,7 @@
             placeholder="选择日期"
             v-model="registerForm.birth"
             style="width: 100%;"
+            value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd"
           ></el-date-picker>
         </el-form-item>
         <el-form-item prop="introduction" label="歌手介绍" size="mini">
@@ -120,7 +121,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="生日" size="mini">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
         </el-form-item>
         <el-form-item label="地区" size="mini">
           <el-input v-model="form.location"></el-input>
@@ -218,8 +219,8 @@ export default {
     },
     // 添加歌手
     addsinger () {
-      let d = this.registerForm.birth
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      // let d = this.registerForm.birth
+      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
       // let params = new URLSearchParams()
       // params.append('name', this.registerForm.name)
       // params.append('sex', this.registerForm.sex)
@@ -227,7 +228,7 @@ export default {
       // params.append('birth', datetime)
       // params.append('location', this.registerForm.location)
       // params.append('introduction', this.registerForm.introduction)
-      this.registerForm.birth = datetime
+      // this.registerForm.birth = datetime
       setSinger(this.registerForm)
         .then(res => {
           if (res.status === 200) {
@@ -270,8 +271,8 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      let d = new Date(this.form.birth)
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      // let d = new Date(this.form.birth)
+      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
       // let params = new URLSearchParams()
       // params.append('id', this.form.id)
       // params.append('name', this.form.name)
@@ -280,7 +281,7 @@ export default {
       // params.append('birth', datetime)
       // params.append('location', this.form.location)
       // params.append('introduction', this.form.introduction)
-      this.form.birth = datetime
+      // this.form.birth = datetime
       updateSingerMsg(this.form)
         .then(res => {
           if (res.status === 200) {
