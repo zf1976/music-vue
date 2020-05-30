@@ -225,10 +225,13 @@ export default {
             this.notify('编辑成功', 'success')
             this.getData()
           } else {
-            this.notify('编辑失败', 'error')
+            this.notify('歌单已经存在', 'error')
           }
         })
         .catch(err => {
+          if (err.data.errCode === 500) {
+            this.notify('歌单已经存在', 'error')
+          }
           console.log(err)
         })
       this.editVisible = false
@@ -246,9 +249,12 @@ export default {
           this.registerForm = {}
           this.notify('添加成功', 'success')
         } else {
-          this.notify('添加失败', 'error')
+          this.notify('歌单已经存在', 'error')
         }
       }).catch(err => {
+        if (err.data.errCode === 500) {
+          this.notify('歌单已经存在', 'error')
+        }
         console.log(err)
       })
       this.centerDialogVisible = false

@@ -236,10 +236,13 @@ export default {
             this.registerForm = {}
             this.notify('添加成功', 'success')
           } else {
-            this.notify('添加失败', 'error')
+            this.notify('歌手已存在', 'error')
           }
         })
         .catch(err => {
+          if (err.data.errCode === 401) {
+            this.notify('歌手已存在', 'error')
+          }
           console.log(err)
         })
       this.centerDialogVisible = false

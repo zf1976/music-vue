@@ -49,8 +49,8 @@ export default {
     }
     return {
       loginForm: { // 登录用户名密码
-        username: '',
-        password: ''
+        username: null,
+        password: null
       },
       rules: {
         username: [
@@ -71,13 +71,13 @@ export default {
     },
     handleleLoginIn () {
       let _this = this
-      let params = new URLSearchParams()
-      params.append('username', this.loginForm.username)
-      params.append('password', this.loginForm.password)
-      loginIn(params)
+      // let params = new URLSearchParams()
+      // params.append('username', this.loginForm.username)
+      // params.append('password', this.loginForm.password)
+      loginIn(this.loginForm)
         .then(res => {
           // console.log('-----------获取登录信息---------------')
-          if (res.code === 1) {
+          if (res.status === 200) {
             _this.$message({
               message: '登录成功',
               type: 'success'
