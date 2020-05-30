@@ -148,11 +148,11 @@ export default {
     },
     // 添加歌曲
     addSong (id) {
-      let params = new URLSearchParams()
-      params.append('songId', id)
-      params.append('songListId', this.$route.query.id)
-      // let listSongData = {'songId': id, 'songListId': this.$route.query.id}
-      setListSong(params)
+      // let params = new URLSearchParams()
+      // params.append('songId', id)
+      // params.append('songListId', this.$route.query.id)
+      let listSongData = {'songId': id, 'songListId': this.$route.query.id}
+      setListSong(listSongData)
         .then(res => {
           if (res.status === 200) {
             this.getData()
