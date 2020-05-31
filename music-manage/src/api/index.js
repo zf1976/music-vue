@@ -18,8 +18,8 @@ export const updateUserMsg = (params) => post(`api/admin/user/update`, params)
 // 删除用户
 export const deleteUser = (id) => get(`api/admin/user/delete?id=${id}`)
 
-export const selectEmail = (email) => post(`api/admin/user/selectEmail?email=${email}`)
-export const selectPhone = (phone) => post(`api/admin/user/selectPhone?phone=${phone}`)
+export const selectEmail = (email) => post(`api/admin/user/select_email?email=${email}`)
+export const selectPhone = (phone) => post(`api/admin/user/select_phone?phone=${phone}`)
 
 // =======================> 收藏列表 API
 // 返回的指定用户ID收藏列表
@@ -31,7 +31,7 @@ export const deleteCollection = (userId, songId) => get(`api/admin/collection/de
 // 获得指定歌曲ID的评论列表
 export const getCommentOfSongId = (songId) => get(`api/admin/comment/song/detail?songId=${songId}`)
 // 获得指定歌单ID的评论列表
-export const getCommentOfSongListId = (songListId) => get(`api/admin/comment/songList/detail?songListId=${songListId}`)
+export const getCommentOfSongListId = (songListId) => get(`api/admin/comment/song_list/detail?songListId=${songListId}`)
 // 更新评论
 export const updateCommentMsg = (params) => post(`api/admin/comment/update`, params)
 // 删除评论
@@ -57,7 +57,7 @@ export const getSongOfSingerId = (id) => get(`api/admin/song/singer/detail?singe
 // 返回的指定用户ID收藏列表
 export const getSongOfId = (id) => get(`api/admin/song/detail?id=${id}`)
 // 返回指定歌手名的歌曲
-export const getSongOfSingerName = (name) => get(`api/admin/song/singerName?name=${name}`)
+export const getSongOfSingerName = (name) => get(`api/admin/song/singer_name?name=${name}`)
 // 更新歌曲信息
 export const updateSongMsg = (params) => post(`api/admin/song/update`, params)
 // 删除歌曲
@@ -67,19 +67,19 @@ export const deleteSong = (id) => get(`api/admin/song/delete?id=${id}`)
 
 // =======================> 歌单 API
 // 添加歌单
-export const setSongList = (params) => post(`api/admin/songList/add`, params)
+export const setSongList = (params) => post(`api/admin/song_list/add`, params)
 // 获取全部歌单
-export const getSongList = () => get(`api/admin/songList`)
+export const getSongList = () => get(`api/admin/song_list`)
 // 更新歌单信息
-export const updateSongListMsg = (params) => post(`api/admin/songList/update`, params)
+export const updateSongListMsg = (params) => post(`api/admin/song_list/update`, params)
 // 删除歌单
-export const deleteSongList = (id) => get(`api/admin/songList/delete?id=${id}`)
+export const deleteSongList = (id) => get(`api/admin/song_list/delete?id=${id}`)
 
 
 // =======================> 歌单歌曲 API
 // 给歌单添加歌曲
-export const setListSong = (params) => post(`api/admin/listSong/add`, params)
+export const setListSong = (params) => post(`api/admin/list_song/add`, params)
 // 返回歌单里指定歌单ID的歌曲
-export const getSongBySongListId = (songListId) => get(`api/admin/listSong/detail?songListId=${songListId}`)
+export const getSongBySongListId = (songListId) => get(`api/admin/list_song/detail?songListId=${songListId}`)
 // 删除歌单里的歌曲
-export const deleteListSong = (songId,songListId) => get(`api/admin/listSong/delete?songId=${songId}&songListId=${songListId}`)
+export const deleteListSong = (songId,songListId) => get(`api/admin/list_song/delete?songId=${songId}&songListId=${songListId}`)
