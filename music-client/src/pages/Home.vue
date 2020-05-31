@@ -39,7 +39,7 @@ export default {
     getSongList (path) {
       getSongList()
         .then(res => {
-          this.songsList[0].list = res.slice(0, 10)
+          this.songsList[0].list = res.data.slice(0, 10)
         })
         .catch(err => {
           console.log(err)
@@ -47,7 +47,7 @@ export default {
     },
     getSinger () {
       getAllSinger().then(res => {
-        this.songsList[1].list = res.slice(0, 10)
+        this.songsList[1].list = res.data.slice(0, 10)
       })
         .catch(err => {
           console.log(err)

@@ -102,7 +102,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsinger">确 定</el-button>
+        <el-button type="primary" size="mini" @click="addSinger">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -218,17 +218,7 @@ export default {
       return `${this.$store.state.HOST}/api/admin/singer/avatar/update?id=${id}`
     },
     // 添加歌手
-    addsinger () {
-      // let d = this.registerForm.birth
-      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      // let params = new URLSearchParams()
-      // params.append('name', this.registerForm.name)
-      // params.append('sex', this.registerForm.sex)
-      // params.append('pic', '/img/singerPic/hhh.jpg')
-      // params.append('birth', datetime)
-      // params.append('location', this.registerForm.location)
-      // params.append('introduction', this.registerForm.introduction)
-      // this.registerForm.birth = datetime
+    addSinger () {
       setSinger(this.registerForm)
         .then(res => {
           if (res.status === 200) {
@@ -274,17 +264,6 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      // let d = new Date(this.form.birth)
-      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      // let params = new URLSearchParams()
-      // params.append('id', this.form.id)
-      // params.append('name', this.form.name)
-      // params.append('sex', this.form.sex)
-      // params.append('pic', this.form.pic)
-      // params.append('birth', datetime)
-      // params.append('location', this.form.location)
-      // params.append('introduction', this.form.introduction)
-      // this.form.birth = datetime
       updateSingerMsg(this.form)
         .then(res => {
           if (res.status === 200) {
@@ -295,6 +274,9 @@ export default {
           }
         })
         .catch(err => {
+          if (err.data.errCode === 401) {
+            this.notify('歌手已存在', 'error')
+          }
           console.log(err)
         })
       this.editVisible = false

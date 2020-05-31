@@ -14,7 +14,7 @@
       </el-form-item>
       <div class="login-btn">
         <el-button @click="goSignUp()">注册</el-button>
-        <el-button type="primary" @click="handleleLoginIn">登录</el-button>
+        <el-button type="primary" @click="handleLoginIn">登录</el-button>
       </div>
     </el-form>
   </div>
@@ -69,11 +69,8 @@ export default {
     changeIndex (value) {
       this.$store.commit('setActiveName', value)
     },
-    handleleLoginIn () {
+    handleLoginIn () {
       let _this = this
-      // let params = new URLSearchParams()
-      // params.append('username', this.loginForm.username)
-      // params.append('password', this.loginForm.password)
       loginIn(this.loginForm)
         .then(res => {
           // console.log('-----------获取登录信息---------------')
