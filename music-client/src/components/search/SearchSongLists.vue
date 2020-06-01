@@ -1,6 +1,6 @@
 <template>
   <div class="search-song-Lists">
-    <content-list :contentList="albumDatas"></content-list>
+    <content-list :contentList="albumData"></content-list>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   data () {
     return {
-      albumDatas: []
+      albumData: []
     }
   },
   mounted () {
@@ -24,14 +24,17 @@ export default {
   methods: {
     getSearchList () {
       if (!this.$route.query.keywords) {
-        this.notify('您输入内容为空', 'warning')
-      } else if (this.$route.query.keywords) {
+        console.log(this.$route.query.keywords)
+        this.notify('你输入的内容为空', 'warning')
+      } else {
         getSongListOfLikeTitle(this.$route.query.keywords)
           .then(res => {
-            this.albumDatas = res
+            this.albumData = res.data
+            console.log(res.data)
+          }).catch(err => {
+            console.log(err)
+            this.notify('暂无该歌曲内容', 'error')
           })
-      } else {
-        this.notify('暂无该歌曲内容', 'error')
       }
     }
   }

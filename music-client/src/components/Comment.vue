@@ -82,8 +82,8 @@ export default {
     getComment () {
       getAllComment(this.type, this.playId)
         .then(res => {
-          this.commentList = res
-          for (let item of res) {
+          this.commentList = res.data
+          for (let item of res.data) {
             this.getUsers(item.userId)
           }
         })
@@ -95,8 +95,8 @@ export default {
     getUsers (id) {
       getUserOfId(id)
         .then(res => {
-          this.userPic.push(res[0].avatar)
-          this.userName.push(res[0].username)
+          this.userPic.push(res.data.avatar)
+          this.userName.push(res.data.username)
         })
         .catch(err => {
           console.log(err)
@@ -117,7 +117,7 @@ export default {
         params.append('content', this.textarea)
         setComment(params)
           .then(res => {
-            if (res.code === 1) {
+            if (res.status === 200) {
               this.textarea = ''
               this.getComment()
               this.notify('评论成功', 'success')
@@ -140,7 +140,7 @@ export default {
         params.append('up', up + 1)
         setLike(params)
           .then(res => {
-            if (res.code === 1) {
+            if (res.status === 200) {
               this.$refs.up[index].children[0].style.color = '#2796dd'
               this.getComment()
             }

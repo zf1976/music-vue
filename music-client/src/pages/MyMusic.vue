@@ -61,12 +61,12 @@ export default {
     getMsg (id) {
       getUserOfId(id)
         .then(res => {
-          this.username = res[0].username
-          this.getuserSex(res[0].sex)
-          this.birth = this.attachBirth(res[0].birth)
-          this.introduction = res[0].introduction
-          this.location = res[0].location
-          this.avatar = res[0].avatar
+          this.username = res.data.username
+          this.getuserSex(res.data.sex)
+          this.birth = this.attachBirth(res.data.birth)
+          this.introduction = res.data.introduction
+          this.location = res.data.location
+          this.avatar = res.data.avatar
         })
         .catch(err => {
           console.log(err)
@@ -83,7 +83,7 @@ export default {
     getCollection (userId) {
       getCollectionOfUser(userId)
         .then(res => {
-          this.collection = res
+          this.collection = res.data
           // 通过歌曲ID获取歌曲信息
           for (let item of this.collection) {
             this.getCollectSongs(item.songId)
@@ -98,7 +98,7 @@ export default {
     getCollectSongs (id) {
       getSongOfId(id)
         .then(res => {
-          this.collectList.push(res[0])
+          this.collectList.push(res.data)
         })
         .catch(err => {
           console.log(err)

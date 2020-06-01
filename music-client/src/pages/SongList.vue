@@ -78,7 +78,7 @@ export default {
       getSongList()
         .then(res => {
           this.currentPage = 1
-          this.albumDatas = res
+          this.albumDatas = res.data
         })
         .catch(err => {
           console.log(err)
@@ -89,7 +89,7 @@ export default {
       getSongListOfStyle(style)
         .then(res => {
           this.currentPage = 1
-          this.albumDatas = res
+          this.albumDatas = res.data
         })
         .catch(err => {
           console.log(err)

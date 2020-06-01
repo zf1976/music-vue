@@ -79,22 +79,22 @@ export default {
   methods: {
     SignUp () {
       let _this = this
-      let d = this.registerForm.birth
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      let params = new URLSearchParams()
-      params.append('username', this.registerForm.username)
-      params.append('password', this.registerForm.password)
-      params.append('sex', this.registerForm.sex)
-      params.append('phone_num', this.registerForm.phoneNum)
-      params.append('email', this.registerForm.email)
-      params.append('birth', datetime)
-      params.append('introduction', this.registerForm.introduction)
-      params.append('location', this.registerForm.location)
-      params.append('avatar', '/img/user.jpg')
-      SignUp(params)
+      // let d = this.registerForm.birth
+      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      // let params = new URLSearchParams()
+      // params.append('username', this.registerForm.username)
+      // params.append('password', this.registerForm.password)
+      // params.append('sex', this.registerForm.sex)
+      // params.append('phone_num', this.registerForm.phoneNum)
+      // params.append('email', this.registerForm.email)
+      // params.append('birth', datetime)
+      // params.append('introduction', this.registerForm.introduction)
+      // params.append('location', this.registerForm.location)
+      // params.append('avatar', '/img/user.jpg')
+      SignUp(this.registerForm)
         .then(res => {
           console.log(res)
-          if (res.code === 1) {
+          if (res.status === 200) {
             _this.notify('注册成功', 'success')
             setTimeout(function () {
               _this.$router.push({path: '/'})

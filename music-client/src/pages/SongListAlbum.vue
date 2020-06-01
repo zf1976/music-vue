@@ -87,7 +87,7 @@ export default {
       getListSongOfSongId(this.songListId)
         .then(res => {
           // 获取歌单里的歌曲信息
-          for (let item of res) {
+          for (let item of res.data) {
             this.getSongList(item.songId)
           }
           this.$store.commit('setListOfSongs', this.songLists)
@@ -100,7 +100,7 @@ export default {
     getSongList (id) {
       getSongOfId(id)
         .then(res => {
-          this.songLists.push(res[0])
+          this.songLists.push(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -110,7 +110,7 @@ export default {
     getRank (id) {
       getRankOfSongListId(id)
         .then(res => {
-          this.value5 = res / 2
+          this.value5 = res.data / 2
         })
         .catch(err => {
           console.log(err)

@@ -100,11 +100,11 @@ export const mixin = {
       } else {
         getSongOfSingerName(this.$route.query.keywords)
           .then(res => {
-            if (!res.length) {
+            if (!res.data.length) {
               this.$store.commit('setListOfSongs', [])
               this.notify('系统暂无该歌曲', 'warning')
             } else {
-              this.$store.commit('setListOfSongs', res)
+              this.$store.commit('setListOfSongs', res.data)
             }
           })
           .catch(err => {

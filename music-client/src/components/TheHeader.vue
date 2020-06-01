@@ -45,11 +45,11 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      musicName: 'F-music',
+      musicName: 'Music',
       navMsg: [], // 左侧导航栏
       loginMsg: [], // 右侧导航栏
       menuList: [], // 用户下拉菜单项
-      keywords: ''
+      keywords: null
     }
   },
   computed: {

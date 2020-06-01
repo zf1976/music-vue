@@ -79,7 +79,7 @@ export default {
               message: '登录成功',
               type: 'success'
             })
-            _this.setUserMsg(res.userMsg[0])
+            _this.setUserMsg(res.data)
             _this.$store.commit('setLoginIn', true)
             setTimeout(function () {
               _this.changeIndex('首页')

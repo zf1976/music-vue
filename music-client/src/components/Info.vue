@@ -84,15 +84,7 @@ export default {
     getMsg (id) {
       getUserOfId(id)
         .then(res => {
-          this.registerForm.username = res[0].username
-          this.registerForm.password = res[0].password
-          this.registerForm.sex = res[0].sex
-          this.registerForm.phoneNum = res[0].phoneNum
-          this.registerForm.email = res[0].email
-          this.registerForm.birth = res[0].birth
-          this.registerForm.introduction = res[0].introduction
-          this.registerForm.location = res[0].location
-          this.registerForm.avatar = res[0].avatar
+          this.registerForm = res.data
         })
         .catch(err => {
           console.log(err)
@@ -102,21 +94,9 @@ export default {
       this.$router.go(-1)
     },
     saveMsg () {
-      let d = new Date(this.registerForm.birth)
-      let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      let params = new URLSearchParams()
-      params.append('id', this.userId)
-      params.append('username', this.registerForm.username)
-      params.append('password', this.registerForm.password)
-      params.append('sex', this.registerForm.sex)
-      params.append('phone_num', this.registerForm.phoneNum)
-      params.append('email', this.registerForm.email)
-      params.append('birth', datetime)
-      params.append('introduction', this.registerForm.introduction)
-      params.append('location', this.registerForm.location)
-      updateUserMsg(params)
+      updateUserMsg(this.registerForm)
         .then(res => {
-          if (res.code === 1) {
+          if (res.status === 200) {
             this.showError = false
             this.showSuccess = true
             this.$store.commit('setUsername', this.registerForm.username)

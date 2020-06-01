@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     uploadUrl () {
-      return `${this.$store.state.configure.HOST}/user/avatar/update?id=${this.userId}`
+      return `${this.$store.state.configure.HOST}/api/app/user/avatar/update?id=${this.userId}`
     },
     handleAvatarSuccess (res, file) {
       if (res.code === 1) {
@@ -52,14 +52,14 @@ export default {
     },
     beforeAvatarUpload (file) {
       const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 10
+      const isLt10M = file.size / 1024 / 1024 < 10
       if (!isJPG) {
         this.$message.error('上传头像图片只能是 JPG 格式!')
       }
-      if (!isLt2M) {
+      if (!isLt10M) {
         this.$message.error('上传头像图片大小不能超过 10MB!')
       }
-      return isJPG && isLt2M
+      return isJPG && isLt10M
     }
   }
 }
