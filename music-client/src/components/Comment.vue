@@ -82,34 +82,42 @@ export default {
     getComment () {
       getAllComment(this.type, this.playId)
         .then(res => {
-          let ids = []
+          // let ids = []
+          let usernameItem = []
+          let avatarItem = []
           this.commentList = res.data
           for (let item of res.data) {
-            ids.push(item.userId)
+            usernameItem.push(item.username)
+            avatarItem.push(item.avatar)
           }
-          this.getUsers(ids)
+          this.userPic = avatarItem
+          this.userName = usernameItem
+          // for (let item of res.data) {
+          //   ids.push(item.userId)
+          // }
+          // this.getUsers(ids)
         })
         .catch(err => {
           console.log(err)
         })
     },
     // 获取评论用户的昵称和头像
-    getUsers (ids) {
-      getUserOfIds(ids)
-        .then(res => {
-          let usernameItem = []
-          let avatarItem = []
-          for (let item of res.data) {
-            usernameItem.push(item.username)
-            avatarItem.push(item.avatar)
-          }
-          this.userName = usernameItem
-          this.userPic = avatarItem
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
+    // getUsers (ids) {
+    //   getUserOfIds(ids)
+    //     .then(res => {
+    //       let usernameItem = []
+    //       let avatarItem = []
+    //       for (let item of res.data) {
+    //         usernameItem.push(item.username)
+    //         avatarItem.push(item.avatar)
+    //       }
+    //       this.userName = usernameItem
+    //       this.userPic = avatarItem
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //     })
+    // },
     // 提交评论
     postComment () {
       if (this.loginIn) {
@@ -125,6 +133,7 @@ export default {
             if (res.status === 200) {
               this.notify('评论成功', 'success')
               this.getComment()
+              this.textarea = ''
             } else {
               this.notify('评论失败', 'error')
             }

@@ -145,14 +145,6 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      // let params = new URLSearchParams()
-      // params.append('id', this.form.id)
-      // params.append('userId', this.form.userId)
-      // params.append('songId', this.form.songId === null ? '' : this.form.songId)
-      // params.append('songListId', this.form.songId === null ? '' : this.form.songListId)
-      // params.append('content', this.form.content)
-      // params.append('type', this.form.type)
-      // params.append('up', this.form.up)
       updateCommentMsg(this.form)
         .then(res => {
           if (res.status === 200) {
