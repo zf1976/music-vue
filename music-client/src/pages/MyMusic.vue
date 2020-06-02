@@ -62,7 +62,7 @@ export default {
       getUserOfId(id)
         .then(res => {
           this.username = res.data.username
-          this.getuserSex(res.data.sex)
+          this.getUserSex(res.data.sex)
           this.birth = this.attachBirth(res.data.birth)
           this.introduction = res.data.introduction
           this.location = res.data.location
@@ -72,7 +72,7 @@ export default {
           console.log(err)
         })
     },
-    getuserSex (sex) {
+    getUserSex (sex) {
       if (sex === 0) {
         this.userSex = '女'
       } else if (sex === 1) {

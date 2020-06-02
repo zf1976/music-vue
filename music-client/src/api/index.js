@@ -12,6 +12,9 @@ export const updateUserMsg = (params) => post(`api/app/user/update`, params)
 // 返回指定ID的用户
 export const getUserOfId = (id) => get(`api/app/user/detail?id=${id}`)
 
+// 返回指定ID集合的用户
+export const getUserOfIds = (ids) => get(`api/app/user/list/detail?ids=${ids}`)
+
 
 // =======================> 歌单 API
 // 获取全部歌单
@@ -52,7 +55,7 @@ export const setComment = (params) => post(`api/app/comment/add`, params)
 export const setLike = (params) => post(`api/app/comment/like`, params)
 // 返回所有评论
 export const getAllComment = (type, id) => {
-  let url = ''
+  let url = null
   if (type === 1) {
     url = `api/app/comment/song_list/detail?songListId=${id}`
   } else if (type === 0) {

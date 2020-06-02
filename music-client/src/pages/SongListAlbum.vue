@@ -119,13 +119,10 @@ export default {
     // 提交评分
     pushValue () {
       if (this.loginIn) {
-        let params = new URLSearchParams()
-        params.append('songListId', this.songListId)
-        params.append('consumerId', this.userId)
-        params.append('score', this.value3 * 2)
+        let params = { 'songListId': this.songListId, 'consumerId': this.userId, 'score': this.value3 * 2 }
         setRank(params)
           .then(res => {
-            if (res.code === 1) {
+            if (res.status === 200) {
               this.getRank(this.songListId)
               this.notify('评分成功', 'success')
             } else {
@@ -133,6 +130,7 @@ export default {
             }
           })
           .catch(err => {
+            this.notify('评分失败', 'error')
             console.log(err)
           })
       } else {

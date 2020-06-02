@@ -43,7 +43,7 @@
 <script>
 import {mixin} from '../mixins'
 import { mapGetters } from 'vuex'
-import { getUserOfId, setComment, setLike, getAllComment } from '../api/index'
+import { setComment, setLike, getAllComment, getUserOfIds } from '../api/index'
 
 export default {
   name: 'comment',
@@ -82,21 +82,29 @@ export default {
     getComment () {
       getAllComment(this.type, this.playId)
         .then(res => {
+          let ids = []
           this.commentList = res.data
           for (let item of res.data) {
-            this.getUsers(item.userId)
+            ids.push(item.userId)
           }
+          this.getUsers(ids)
         })
         .catch(err => {
           console.log(err)
         })
     },
     // 获取评论用户的昵称和头像
-    getUsers (id) {
-      getUserOfId(id)
+    getUsers (ids) {
+      getUserOfIds(ids)
         .then(res => {
-          this.userPic.push(res.data.avatar)
-          this.userName.push(res.data.username)
+          let usernameItem = []
+          let avatarItem = []
+          for (let item of res.data) {
+            usernameItem.push(item.username)
+            avatarItem.push(item.avatar)
+          }
+          this.userName = usernameItem
+          this.userPic = avatarItem
         })
         .catch(err => {
           console.log(err)
@@ -106,21 +114,17 @@ export default {
     postComment () {
       if (this.loginIn) {
         // 0 代表歌曲， 1 代表歌单
-        let params = new URLSearchParams()
+        let params
         if (this.type === 1) {
-          params.append('songListId', this.playId)
+          params = { 'songListId': this.playId, 'userId': this.userId, 'type': this.type, 'content': this.textarea }
         } else if (this.type === 0) {
-          params.append('songId', this.playId)
+          params = { 'songId': this.playId, 'userId': this.userId, 'type': this.type, 'content': this.textarea }
         }
-        params.append('userId', this.userId)
-        params.append('type', this.type)
-        params.append('content', this.textarea)
         setComment(params)
           .then(res => {
             if (res.status === 200) {
-              this.textarea = ''
-              this.getComment()
               this.notify('评论成功', 'success')
+              this.getComment()
             } else {
               this.notify('评论失败', 'error')
             }
