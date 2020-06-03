@@ -27,17 +27,17 @@ axios.interceptors.response.use(
   response => {
     // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
     // 否则的话抛出错误
-
     if (response.status === 200) {
       store.commit("setNetwork",true)
       return Promise.resolve(response);
     } else {
+      store.commit("setNetwork",false)
       return Promise.reject(response);
     }
+
   },
   // 服务器状态码不是2开头的的情况
   error => {
-    console.log(error)
     if (error.response.status) {
       switch (error.response.status) {
         // 401: 未登录

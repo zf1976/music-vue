@@ -84,7 +84,29 @@ export default {
       editVisible: false,
       delVisible: false,
       select_word: '',
-      idx: -1
+      idx: -1,
+      props: {
+        label: 'name',
+        value: 'id',
+        children: 'child'
+      },
+      platOptions: [{
+        value: 'nan',
+        label: '男',
+        children: []
+      }, {
+        value: 'nv',
+        label: '女',
+        children: []
+      }, {
+        value: 'zuhe',
+        label: '组合',
+        children: []
+      }, {
+        value: 'buming',
+        label: '不明',
+        children: []
+      }]
     }
   },
   watch: {
@@ -111,7 +133,6 @@ export default {
       this.tempDate = []
       getSongBySongListId(this.$route.query.id)
         .then(res => {
-          console.log(res.data)
           for (let item of res.data) {
             this.getSong(item.songId)
           }
@@ -135,22 +156,20 @@ export default {
     // 获取要添加歌曲的ID
     getSongId () {
       let _this = this
-      var name = _this.registerForm.singerName + '-' + _this.registerForm.songName
+      let name = _this.registerForm.singerName + '-' + _this.registerForm.songName
       console.log(name)
       getSongOfSingerName(name)
         .then(res => {
-          // 根据歌手名字返回歌手id
           if (res.status === 200) {
-            console.log(res)
-            this.addSong(res.data.id)
+            this.addSong(res.data[0].id)
           }
+        }).catch(err => {
+          console.log(err)
+          this.notify('未找到歌曲', 'error')
         })
     },
     // 添加歌曲
     addSong (id) {
-      // let params = new URLSearchParams()
-      // params.append('songId', id)
-      // params.append('songListId', this.$route.query.id)
       let listSongData = {'songId': id, 'songListId': this.$route.query.id}
       setListSong(listSongData)
         .then(res => {
@@ -162,6 +181,7 @@ export default {
           }
         })
         .catch(err => {
+          this.notify('歌曲已存在', 'error')
           console.log(err)
         })
       this.centerDialogVisible = false

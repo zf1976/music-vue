@@ -114,7 +114,7 @@
         </div>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false" plain size="mini">取 消</el-button>
+        <el-button @click="centerDialogVisible = false" plain size="mini" >取 消</el-button>
         <el-button type="primary" @click="addSong" plain size="mini">确 定</el-button>
       </span>
     </el-dialog>
@@ -154,7 +154,7 @@ import SongAudio from '../components/SongAudio'
 import { mixin } from '../mixins'
 import { mapGetters } from 'vuex'
 import '@/assets/js/iconfont.js'
-import { getSongOfSingerId, updateSongMsg, deleteSong } from '../api/index'
+import { getSongOfSingerId, updateSongMsg, deleteSong, addSong } from '../api/index'
 
 export default {
   name: 'song-page',
@@ -289,21 +289,31 @@ export default {
       if (form.get('lyric') === '' || form.get('lyric') === null) {
         form.set('lyric', '[00:00:00]暂无歌词')
       }
-      var req = new XMLHttpRequest()
-      req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-          let res = JSON.parse(req.response)
-          if (res.status === 200) {
-            _this.getData()
-            _this.registerForm = {}
-            _this.notify('上传成功', 'success')
-          } else if (!(res.status === 200)) {
-            _this.notify('上传失败', 'error')
-          }
+      // let req = new XMLHttpRequest()
+      // req.onreadystatechange = function () {
+      //   if (req.readyState === 4 && req.status === 200) {
+      //     let res = JSON.parse(req.response)
+      //     if (res.status === 200) {
+      //       _this.getData()
+      //       _this.registerForm = {}
+      //       _this.notify('上传成功', 'success')
+      //     } else {
+      //       _this.notify('上传失败', 'error')
+      //     }
+      //   }
+      // }
+      // req.open('post', `${_this.$store.state.HOST}/api/admin/song/add`, true)
+      // req.send(form)
+      addSong(form).then(res => {
+        if (res.status === 200) {
+          _this.getData()
+          _this.registerForm = {}
+          _this.notify('上传成功', 'success')
         }
-      }
-      req.open('post', `${_this.$store.state.HOST}/api/admin/song/add`, true)
-      req.send(form)
+      }).catch(err => {
+        console.log(err)
+        _this.notify('歌曲已存在', 'error')
+      })
       _this.centerDialogVisible = false
     },
     // 编辑

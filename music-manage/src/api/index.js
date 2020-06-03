@@ -62,6 +62,8 @@ export const getSongOfSingerName = (name) => get(`api/admin/song/singer_name?nam
 export const updateSongMsg = (params) => post(`api/admin/song/update`, params)
 // 删除歌曲
 export const deleteSong = (id) => get(`api/admin/song/delete?id=${id}`)
+// 添加歌曲
+export const addSong = (form) => post('/api/admin/song/add',form)
 
 
 

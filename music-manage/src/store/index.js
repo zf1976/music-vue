@@ -22,7 +22,6 @@ const store = new Vuex.Store({
     setId: (state, id) => { state.id = id },
     setNetwork: (state, val) => {
       state.networkSuccess = val
-      console.log(val)
     }
   }
 })
