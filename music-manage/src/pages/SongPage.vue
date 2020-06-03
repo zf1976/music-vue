@@ -75,7 +75,7 @@
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
             <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.row)" type="primary" plain>编辑</el-button>
+                <el-button size="mini" @click="handleEdit(scope.row)"  type="primary" plain>编辑</el-button>
                 <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)" plain>删除</el-button>
             </template>
         </el-table-column>
@@ -114,8 +114,8 @@
         </div>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false" plain>取 消</el-button>
-        <el-button type="primary" @click="addSong" plain>确 定</el-button>
+        <el-button @click="centerDialogVisible = false" plain size="mini">取 消</el-button>
+        <el-button type="primary" @click="addSong" plain size="mini">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -129,7 +129,7 @@
           <el-input v-model="form.introduction"></el-input>
         </el-form-item>
         <el-form-item label="歌词" size="mini">
-          <el-input  type="textarea" v-model="form.lyric"></el-input>
+          <el-input  type="textarea" v-model="form.lyric" autosize></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
