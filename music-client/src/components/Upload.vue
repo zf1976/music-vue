@@ -39,7 +39,7 @@ export default {
       return `${this.$store.state.configure.HOST}/api/app/user/avatar/update?id=${this.userId}`
     },
     handleAvatarSuccess (res, file) {
-      if (res.code === 1) {
+      if (res.status === 200) {
         this.imageUrl = URL.createObjectURL(file.raw)
         this.$store.commit('setAvatar', res.avatar)
         this.$message({

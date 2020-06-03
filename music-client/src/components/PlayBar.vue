@@ -323,13 +323,14 @@ export default {
     },
     collection () {
       if (this.loginIn) {
-        var params = new URLSearchParams()
-        params.append('userId', this.userId)
-        params.append('type', 0) // 0 代表歌曲， 1 代表歌单
-        params.append('songId', this.id)
-        setCollection(params)
+        // let params = new URLSearchParams()
+        // params.append('userId', this.userId)
+        // params.append('type', 0) // 0 代表歌曲， 1 代表歌单
+        // params.append('songId', this.id)
+        let paramFrom = {'userId': this.userId, 'type': 0, 'songId': this.id}
+        setCollection(paramFrom)
           .then(res => {
-            if (res.code === 1) {
+            if (res.status === 200) {
               this.$store.commit('setIsActive', true)
               this.notify('收藏成功', 'success')
             } else if (res.code === 2) {
