@@ -112,18 +112,20 @@ export default {
         promise = getCommentOfSongListId(this.$route.query.id)
       }
       promise.then(res => {
+        let usernameItem = []
         for (let item of res.data) {
-          this.getUsers(item.userId, item)
+          this.getUsers(item.userId, item, usernameItem)
         }
+        this.tempDate = usernameItem
+        this.tableData = usernameItem
       })
     },
-    getUsers (id, item) {
+    getUsers (id, item, usernameItem) {
       getUserOfId(id)
         .then(res => {
           let o = item
           o.name = res.data.username
-          this.tableData.push(o)
-          this.tempDate.push(o)
+          usernameItem.push(o)
         })
         .catch(err => {
           console.log(err)

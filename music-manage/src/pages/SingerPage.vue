@@ -2,8 +2,8 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-button  size="mini" class="handle-del mr10" @click="delAll" type="danger" icon="el-icon-delete">批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌手</el-button>
       </div>
       <el-table ref="multipleTable" size="mini" border style="width: 100%" height="550px" :data="data" @selection-change="handleSelectionChange">
@@ -20,7 +20,7 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
               >
-              <el-button size="mini">更新图片</el-button>
+              <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
             </el-upload>
           </template>
         </el-table-column>
@@ -43,13 +43,13 @@
         </el-table-column>
         <el-table-column label="歌曲管理" width="110" align="center">
           <template slot-scope="scope">
-            <el-button size="mini" @click="songEdit(scope.row.id, scope.row.name)">歌曲管理</el-button>
+            <el-button size="mini" @click="songEdit(scope.row.id, scope.row.name)" type="info" plain>歌曲管理</el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="mini" @click="handleEdit(scope.row)" type="primary" plain>编辑</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)" plain>删除</el-button>
           </template>
         </el-table-column>
       </el-table>

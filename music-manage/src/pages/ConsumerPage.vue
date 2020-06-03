@@ -2,8 +2,8 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选相关用户" class="handle-input mr10"></el-input>
+        <el-button size="mini" class="handle-del mr10" @click="delAll" type="danger" icon="el-icon-delete">批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选相关用户" class="handle-input mr10" clearable></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加新用户</el-button>
       </div>
       <el-table :data="data" border size="mini" style="width: 100%" ref="multipleTable" height="550px" @selection-change="handleSelectionChange">
@@ -17,7 +17,7 @@
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
-              <el-button size="mini">更新图片</el-button>
+              <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
             </el-upload>
           </template>
         </el-table-column>
@@ -39,13 +39,13 @@
         <el-table-column prop="location" label="地区" width="80" align="center"></el-table-column>
         <el-table-column label="收藏" width="80" align="center">
             <template  slot-scope="scope">
-                <el-button size="mini" @click="getCollect(data[scope.$index].id)">收藏</el-button>
+                <el-button size="mini" type="warning" icon="el-icon-star-on" @click="getCollect(data[scope.$index].id)"></el-button>
             </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
             <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+                <el-button size="mini" @click="handleEdit(scope.row)" type="primary" plain>编辑</el-button>
+                <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)" plain>删除</el-button>
             </template>
         </el-table-column>
       </el-table>
@@ -322,7 +322,7 @@ export default {
         createTime: '',
         updateTime: ''
       },
-      pageSize: 5, // 页数
+      pageSize: 10, // 一页十条数据
       currentPage: 1, // 当前页
       idx: -1 // 记录当前点中的行
     }
@@ -353,6 +353,7 @@ export default {
   methods: {
     // 获取当前页
     handleCurrentChange (val) {
+      console.log(val)
       this.currentPage = val
     },
     uploadUrl (id) {
@@ -373,18 +374,6 @@ export default {
     },
     // 添加用户
     addPeople () {
-      // let params = new URLSearchParams()
-      // params.append('username', this.registerForm.username)
-      // params.append('password', this.registerForm.password)
-      // params.append('sex', this.registerForm.sex)
-      // params.append('phone_num', this.registerForm.phoneNum)
-      // params.append('email', this.registerForm.email)
-      // params.append('birth', datetime)
-      // params.append('introduction', this.registerForm.introduction)
-      // params.append('location', this.registerForm.location)
-      // params.append('avatar', 'data/img/user.jpg')
-      // this.registerForm.avatar.value = 'data/img/user.jpg'
-      // eslint-disable-next-line no-undef
       let formObj = this.registerForm
       if (formObj.username === null) {
         this.notify('请输入用户名', 'error')
@@ -464,16 +453,6 @@ export default {
         this.notify('请选择出生年月', 'error')
         return
       }
-      // let params = new URLSearchParams()
-      // params.append('id', this.form.id)
-      // params.append('username', this.form.username)
-      // params.append('password', this.form.password)
-      // params.append('sex', this.form.sex)
-      // params.append('phone_num', this.form.phoneNum)
-      // params.append('email', this.form.email)
-      // params.append('birth', datetime)
-      // params.append('introduction', this.form.introduction)
-      // params.append('location', this.form.location)
       updateUserMsg(this.form).then(res => {
         if (res.status === 200) {
           this.getData()

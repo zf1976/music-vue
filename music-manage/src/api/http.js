@@ -1,5 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
+import store from "../store";
+import * as Message from "element-ui";
 axios.defaults.timeout = 10000;  //超时时间设置
 axios.defaults.withCredentials = true;  //true允许跨域
 //Content-Type 响应头
@@ -24,7 +26,9 @@ axios.interceptors.response.use(
   response => {
     // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
     // 否则的话抛出错误
+
     if (response.status === 200) {
+      store.commit("setNetwork",true)
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);

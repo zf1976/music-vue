@@ -9,13 +9,13 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-button type="danger" icon="el-icon-delete" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌曲</el-button>
       </div>
       <el-table :data="data" size="mini" border style="width: 100%" ref="multipleTable" height="550px" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
-        <el-table-column label="歌手图片" width="110" align="center">
+        <el-table-column label="歌手图片" width="110" align="center" >
           <template slot-scope="scope">
             <div style="width: 80px; height: 80px; overflow: hidden">
               <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
@@ -55,7 +55,7 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
               >
-                <el-button size="mini">更新图片</el-button>
+                <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
             </el-upload>
             <br>
             <el-upload
@@ -64,18 +64,18 @@
               :show-file-list="false"
               :on-success="handleSongSuccess"
               :before-upload="beforeSongUpload">
-              <el-button size="mini">更新歌曲</el-button>
+              <el-button size="mini" icon="el-icon-service" round>更新</el-button>
             </el-upload>
           </template>
         </el-table-column>
         <el-table-column label="评论" width="80" align="center">
             <template  slot-scope="scope">
-                <el-button size="mini" @click="getComment(data[scope.$index].id)">评论</el-button>
+                <el-button size="mini" @click="getComment(data[scope.$index].id)" type="info" plain>评论</el-button>
             </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
             <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+                <el-button size="mini" @click="handleEdit(scope.row)" type="primary" plain>编辑</el-button>
                 <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
             </template>
         </el-table-column>
@@ -105,7 +105,7 @@
         </div>
         <div>
           <label>歌词</label>
-          <el-input type="textarea" value="" name="lyric"></el-input>
+          <el-input type="textarea" value="" name="lyric" autosize></el-input>
         </div>
         <div>
           <label>歌曲上传</label>
@@ -169,6 +169,7 @@ export default {
       singerName: '',
       registerForm: {
         name: '',
+        singerId: '',
         singerName: '',
         introduction: '',
         lyric: ''
@@ -186,11 +187,7 @@ export default {
         singerId: '',
         name: '',
         introduction: '',
-        createTime: '',
-        updateTime: '',
-        pic: '',
-        lyric: '',
-        url: ''
+        lyric: ''
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
@@ -288,23 +285,24 @@ export default {
       var form = new FormData(document.getElementById('tf'))
       form.append('singerId', this.singerId)
       form.set('name', this.singerName + '-' + form.get('name'))
-      if (!form.get('lyric')) {
+      form.set('introduction', form.get('introduction'))
+      if (form.get('lyric') === '' || form.get('lyric') === null) {
         form.set('lyric', '[00:00:00]暂无歌词')
       }
       var req = new XMLHttpRequest()
       req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
           let res = JSON.parse(req.response)
-          if (res.code) {
+          if (res.status === 200) {
             _this.getData()
             _this.registerForm = {}
-            _this.notify(res.msg, 'success')
-          } else if (!res.code) {
+            _this.notify('上传成功', 'success')
+          } else if (!(res.status === 200)) {
             _this.notify('上传失败', 'error')
           }
         }
       }
-      req.open('post', `${_this.$store.state.HOST}/song/add`, false)
+      req.open('post', `${_this.$store.state.HOST}/api/admin/song/add`, true)
       req.send(form)
       _this.centerDialogVisible = false
     },
@@ -316,11 +314,7 @@ export default {
         singerId: row.singerId,
         name: row.name,
         introduction: row.introduction,
-        createTime: row.createTime,
-        updateTime: row.updateTime,
-        pic: row.pic,
-        lyric: row.lyric,
-        url: row.url
+        lyric: row.lyric
       }
       this.editVisible = true
     },
@@ -329,15 +323,9 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      // let params = new URLSearchParams()
-      // params.append('id', this.form.id)
-      // params.append('singerId', this.form.singerId)
-      // params.append('name', this.form.name)
-      // params.append('introduction', this.form.introduction)
-      // params.append('lyric', this.form.lyric)
       updateSongMsg(this.form)
         .then(res => {
-          if (res) {
+          if (res.status === 200) {
             this.getData()
             this.notify('编辑成功', 'success')
           } else {

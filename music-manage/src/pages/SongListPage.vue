@@ -2,13 +2,13 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-button type="danger" icon="el-icon-delete" size="mini" class="handle-del mr10" @click="delAll" >批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌单</el-button>
       </div>
       <el-table :data="data" border size="mini" style="width: 100%" height="550px" ref="multipleTable" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
-        <el-table-column label="歌单图片" width="100" align="center">
+        <el-table-column label="歌单图片" width="100" align="center" icon="el-icon-loading">
           <template slot-scope="scope">
             <img :src="getUrl(scope.row.pic)" alt="" style="width: 80px;"/>
               <el-upload
@@ -18,7 +18,7 @@
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
                 >
-                <el-button size="mini">更新图片</el-button>
+                <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
               </el-upload>
           </template>
         </el-table-column>
@@ -35,24 +35,24 @@
         </el-table-column>
         <el-table-column label="内容" width="80" align="center">
           <template  slot-scope="scope">
-            <el-button size="mini" @click="getContent(data[scope.$index].id)">内容</el-button>
+            <el-button size="mini" @click="getContent(data[scope.$index].id)" type="info" plain>内容</el-button>
           </template>
         </el-table-column>
         <el-table-column label="评论" width="80" align="center">
           <template  slot-scope="scope">
-            <el-button size="mini" @click="getComment(data[scope.$index].id)">评论</el-button>
+            <el-button size="mini" @click="getComment(data[scope.$index].id)" type="info" plain>评论</el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleEdit(scope.row)">编辑
+              @click="handleEdit(scope.row)" type="primary" plain>编辑
             </el-button>
             <el-button
               size="mini"
               type="danger"
-              @click="handleDelete(scope.row.id)">删除
+              @click="handleDelete(scope.row.id)" plain>删除
             </el-button>
           </template>
         </el-table-column>

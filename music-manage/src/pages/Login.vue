@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-title">Yin-music 后台管理</div>
+    <div class="ms-title">Music 后台管理</div>
     <div class="ms-login">
       <el-form
         :model="ruleForm"
@@ -9,9 +9,11 @@
         class="demo-ruleForm"
       >
         <el-form-item prop="username">
-          <el-input v-model="ruleForm.username" placeholder="username"></el-input>
+          <el-input
+            v-model="ruleForm.username"
+            placeholder="username"></el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="password" >
           <el-input
             type="password"
             placeholder="password"
@@ -19,8 +21,8 @@
             @keyup.enter.native="submitForm('ruleForm')"
           ></el-input>
         </el-form-item>
-        <div class="login-btn">
-          <el-button type="primary" @click="submitForm">登录</el-button>
+        <div class="login-btn" >
+          <el-button id="loginCheck" type="primary" :loading="false" @click="submitForm" icon="el-icon-circle-check">登录</el-button>
         </div>
         <p style="font-size:12px;line-height:30px;color:#999;"></p>
       </el-form>
@@ -57,11 +59,15 @@ export default {
             this.notify('欢迎回来', 'success')
           } else {
             this.notify('登录失败', 'error')
+            this.$router.push('/')
           }
         })
         .catch(err => {
           console.log(err)
         })
+      if (!this.state.networkSuccess) {
+        this.notify('服务器连接失败', 'error')
+      }
     }
   }
 }
@@ -87,6 +93,15 @@ export default {
   font-weight: 600;
   color: #fff;
 }
+
+.svg-container {
+  padding: 6px 5px 6px 15px;
+  color: $dark_gray;
+  vertical-align: middle;
+  width: 48px;
+  display: inline-block;
+}
+
 .ms-login {
   position: absolute;
   left: 50%;
