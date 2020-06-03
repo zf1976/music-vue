@@ -9,8 +9,8 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-button plain size="mini" class="handle-del mr10" @click="delAll" type="danger" icon="el-icon-delete">批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
       </div>
       <el-table
         :data="tableData"
@@ -25,8 +25,8 @@
         <el-table-column prop="content" label="评论内容"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="mini" type="primary" @click="handleEdit(scope.row)" plain>编辑</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)" plain>删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -40,8 +40,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="editVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="saveEdit">确 定</el-button>
+        <el-button size="mini" @click="editVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="saveEdit" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -49,8 +49,8 @@
     <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
       <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow" plain>确 定</el-button>
       </span>
     </el-dialog>
   </div>

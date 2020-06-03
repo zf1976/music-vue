@@ -2,9 +2,9 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button size="mini" class="handle-del mr10" @click="delAll" type="danger" icon="el-icon-delete">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选相关用户" class="handle-input mr10" clearable></el-input>
-        <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加新用户</el-button>
+        <el-button size="mini" class="handle-del mr10" @click="delAll" type="danger" icon="el-icon-delete" plain>批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选相关用户" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
+        <el-button type="primary" size="mini" @click="centerDialogVisible = true" plain>添加新用户</el-button>
       </div>
       <el-table :data="data" border size="mini" style="width: 100%" ref="multipleTable" height="550px" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center"></el-table-column>
@@ -17,7 +17,7 @@
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
-              <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
+              <el-button size="mini" icon="el-icon-picture" type="primary" plain>更新</el-button>
             </el-upload>
           </template>
         </el-table-column>
@@ -35,11 +35,15 @@
                 <div>{{attachBirth(scope.row.birth)}}</div>
             </template>
         </el-table-column>
-        <el-table-column prop="introduction" label="签名" align="center"></el-table-column>
+        <el-table-column prop="introduction" label="签名" align="center">
+          <template slot-scope="scope">
+            <p style="height: 100px; overflow: scroll">{{ scope.row.introduction }}</p>
+          </template>
+        </el-table-column>
         <el-table-column prop="location" label="地区" width="80" align="center"></el-table-column>
         <el-table-column label="收藏" width="80" align="center">
             <template  slot-scope="scope">
-                <el-button size="mini" type="warning" icon="el-icon-star-on" @click="getCollect(data[scope.$index].id)"></el-button>
+                <el-button size="mini" type="success"  plain icon="el-icon-star-off" @click="getCollect(data[scope.$index].id)"></el-button>
             </template>
         </el-table-column>
         <el-table-column label="操作" width="150" align="center">
@@ -86,7 +90,10 @@
             <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" align="right"></el-date-picker>
         </el-form-item>
         <el-form-item label="签名" prop="introduction" size="mini">
-          <el-input  type="textarea" placeholder="签名" v-model="registerForm.introduction" ></el-input>
+          <el-input  type="textarea" placeholder="签名"
+                     :autosize="{ minRows: 4, maxRows: 8}"
+                     v-model="registerForm.introduction" >
+          </el-input>
         </el-form-item>
         <el-form-item label="地区" prop="location" size="mini">
           <el-select v-model="registerForm.location" placeholder="地区">
@@ -95,8 +102,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="centerDialogVisible = false" click="clearValidate">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addPeople">确 定</el-button>
+        <el-button size="mini" @click="centerDialogVisible = false" click="clearValidate" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="addPeople" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -124,19 +131,24 @@
         <el-form-item label="生日" prop="birth" size="mini">
           <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
         </el-form-item>
-        <el-form-item label="签名" size="mini">
-          <el-input v-model="form.introduction"></el-input>
+        <el-form-item label="签名" size="mini" prop="introduction">
+          <el-input  type="textarea" placeholder="签名"
+                     :autosize="{ minRows: 2, maxRows: 4}"
+                     v-model="form.introduction" >
+          </el-input>
         </el-form-item>
         <el-form-item label="地区" size="mini">
-          <el-input v-model="form.location"></el-input>
+          <el-select v-model="form.location" placeholder="地区">
+          <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
         </el-form-item>
       </el-form>
       <!-- <el-from-item label="" size="mini">
           <el-button type="primary" size="mini" align="center">密码重置</el-button>
       </el-from-item> -->
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="editVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="saveEdit">确 定</el-button>
+        <el-button size="mini" @click="editVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="saveEdit" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -144,8 +156,8 @@
     <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
       <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button size="mini" type="primary" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false" plain>取 消</el-button>
+        <el-button size="mini" type="primary" @click="deleteRow" plain>确 定</el-button>
       </span>
     </el-dialog>
   </div>

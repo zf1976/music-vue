@@ -2,9 +2,9 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button type="danger" icon="el-icon-delete" size="mini" class="handle-del mr10" @click="delAll" >批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable></el-input>
-        <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌单</el-button>
+        <el-button type="danger" icon="el-icon-delete" size="mini" class="handle-del mr10" @click="delAll" plain>批量删除</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
+        <el-button type="primary" size="mini" @click="centerDialogVisible = true" plain>添加歌单</el-button>
       </div>
       <el-table :data="data" border size="mini" style="width: 100%" height="550px" ref="multipleTable" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
@@ -18,7 +18,7 @@
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
                 >
-                <el-button size="mini" icon="el-icon-picture" round>更新</el-button>
+                <el-button size="mini" icon="el-icon-picture" type="primary" plain>更新</el-button>
               </el-upload>
           </template>
         </el-table-column>
@@ -76,15 +76,15 @@
             <el-input v-model="registerForm.title" placeholder="歌单名"></el-input>
           </el-form-item>
           <el-form-item label="歌单介绍" prop="introduction" size="mini">
-            <el-input v-model="registerForm.introduction" placeholder="歌单介绍"></el-input>
+            <el-input  type="textarea" v-model="registerForm.introduction" placeholder="歌单介绍" :autosize="{ minRows: 4, maxRows: 8}"></el-input>
           </el-form-item>
           <el-form-item label="风格" prop="style" size="mini">
             <el-input v-model="registerForm.style" placeholder="风格"></el-input>
           </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsongList">确 定</el-button>
+        <el-button size="mini" @click="centerDialogVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="addsongList" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -95,15 +95,15 @@
           <el-input v-model="form.title"></el-input>
         </el-form-item>
         <el-form-item label="简介" size="mini">
-          <el-input  type="textarea" v-model="form.introduction"></el-input>
+          <el-input  type="textarea" v-model="form.introduction" :autosize="{ minRows: 4, maxRows: 8}"></el-input>
         </el-form-item>
         <el-form-item label="风格" size="mini">
           <el-input v-model="form.style"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="editVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="saveEdit">确 定</el-button>
+        <el-button size="mini" @click="editVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="saveEdit" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -111,8 +111,8 @@
     <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
       <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false" plain>取 消</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow" plain>确 定</el-button>
       </span>
     </el-dialog>
   </div>

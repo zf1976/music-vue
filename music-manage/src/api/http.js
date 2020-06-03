@@ -23,6 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // 响应拦截器
 axios.interceptors.response.use(
+
   response => {
     // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
     // 否则的话抛出错误
@@ -36,6 +37,7 @@ axios.interceptors.response.use(
   },
   // 服务器状态码不是2开头的的情况
   error => {
+    console.log(error)
     if (error.response.status) {
       switch (error.response.status) {
         // 401: 未登录
