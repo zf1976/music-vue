@@ -25,7 +25,7 @@
         <el-input v-model="registerForm.email" placeholder="邮箱"></el-input>
       </el-form-item>
       <el-form-item prop="birth" label="生日">
-        <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;"></el-date-picker>
+        <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd"></el-date-picker>
       </el-form-item>
       <el-form-item prop="introduction" label="签名">
         <el-input  type="textarea" placeholder="签名" v-model="registerForm.introduction" ></el-input>
@@ -79,18 +79,6 @@ export default {
   methods: {
     SignUp () {
       let _this = this
-      // let d = this.registerForm.birth
-      // let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-      // let params = new URLSearchParams()
-      // params.append('username', this.registerForm.username)
-      // params.append('password', this.registerForm.password)
-      // params.append('sex', this.registerForm.sex)
-      // params.append('phone_num', this.registerForm.phoneNum)
-      // params.append('email', this.registerForm.email)
-      // params.append('birth', datetime)
-      // params.append('introduction', this.registerForm.introduction)
-      // params.append('location', this.registerForm.location)
-      // params.append('avatar', '/img/user.jpg')
       SignUp(this.registerForm)
         .then(res => {
           console.log(res)

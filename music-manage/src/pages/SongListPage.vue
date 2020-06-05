@@ -64,7 +64,7 @@
           layout="total, prev, pager, next"
           :current-page="currentPage"
           :page-size="pageSize"
-          :total="tableData.length">
+          :total="total">
         </el-pagination>
       </div>
     </div>
@@ -149,13 +149,22 @@ export default {
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
+      total: 0,
+      page: {
+        dir: '',
+        limit: 0,
+        page: 0,
+        sort: '',
+        start: 0
+      },
       idx: -1
     }
   },
   computed: {
     // 计算当前表格中的数据
     data () {
-      return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      // return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      return this.tableData
     }
   },
   watch: {
@@ -183,15 +192,18 @@ export default {
     getData () {
       this.tableData = []
       this.tempDate = []
-      getSongList().then((res) => {
-        this.tableData = res.data
-        this.tempDate = res.data
-        this.currentPage = 1
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getSongList(this.page).then((res) => {
+        this.tableData = res.data.records
+        this.tempDate = res.data.records
+        this.total = res.data.total
       })
     },
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
+      this.getData()
     },
     getContent (id) {
       this.$router.push({path: '/listSong', query: {id: id}})

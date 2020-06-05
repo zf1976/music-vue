@@ -6,7 +6,7 @@
         <el-input v-model="select_word" size="mini" placeholder="筛选相关用户" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true" plain>添加新用户</el-button>
       </div>
-      <el-table :data="data" border size="mini" style="width: 100%" ref="multipleTable" height="550px" @selection-change="handleSelectionChange">
+      <el-table :data="data" border size="mini" style="width: 100%" ref="multipleTable" height="700px" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center"></el-table-column>
         <el-table-column label="歌手图片" width="102" align="center">
           <template slot-scope="scope">
@@ -55,12 +55,12 @@
       </el-table>
       <div class="pagination">
         <el-pagination
-          @current-change="handleCurrentChange"
           background
-          layout="total, prev, pager, next"
-          :current-page="currentPage"
-          :page-size="pageSize"
-          :total="tableData.length">
+          layout="total, prev, pager, next, jumper"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage"
+          :page-size.sync="pageSize"
+          :total.sync="total">
         </el-pagination>
       </div>
     </div>
@@ -163,7 +163,7 @@
   </div>
 </template>
 
-<script>
+<script type="application/javascript">
 import { mixin } from '../mixins'
 import { addUser, updateUserMsg, getAllUser, deleteUser } from '../api/index'
 
@@ -334,15 +334,25 @@ export default {
         createTime: '',
         updateTime: ''
       },
-      pageSize: 10, // 一页十条数据
+      pageSize: 5, // 一页十条数据
       currentPage: 1, // 当前页
+      total: 0,
+      page: {
+        dir: '',
+        limit: 0,
+        page: 0,
+        sort: '',
+        start: 0
+      },
       idx: -1 // 记录当前点中的行
     }
   },
   computed: {
     // 计算当前表格中的数据
     data () {
-      return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      //   return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      // }
+      return this.tableData
     }
   },
   watch: {
@@ -363,22 +373,32 @@ export default {
     this.getData()
   },
   methods: {
+    handlePrevChange (val) {
+      this.currentPage -= 1
+      console.log('上一页', val)
+    },
+    handleNextChange (val) {
+      this.currentPage += 1
+      console.log('下一页', val)
+    },
     // 获取当前页
     handleCurrentChange (val) {
-      console.log(val)
       this.currentPage = val
+      this.getData()
     },
     uploadUrl (id) {
       return `${this.$store.state.HOST}/api/admin/user/avatar/update?id=${id}`
     },
     // 获取用户信息
     getData () {
+      this.page.limit = this.pageSize
+      this.page.page = this.currentPage
       this.tableData = []
       this.tempDate = []
-      getAllUser().then((res) => {
-        this.tableData = res.data
-        this.tempDate = res.data
-        this.currentPage = 1
+      getAllUser(this.page).then((res) => {
+        this.tableData = res.data.records
+        this.tempDate = res.data.records
+        this.total = res.data.total
       })
     },
     getCollect (id) {
@@ -487,8 +507,8 @@ export default {
       deleteUser(this.idx)
         .then(res => {
           if (res.status === 200) {
-            this.getData()
             this.notify('删除成功', 'success')
+            this.getData()
           } else if (res.data.errCode === 400) {
             this.notify('用户不存在', 'error')
           }

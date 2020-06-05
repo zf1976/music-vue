@@ -8,7 +8,7 @@ export const getLoginStatus = (params) => post(`api/admin/login/status`,params)
 
 // =======================> 用户 API
 // 返回所有用户
-export const getAllUser = () => get(`api/admin/user`)
+export const getAllUser = (params) => post(`api/admin/user`, params)
 // 返回指定ID的用户
 export const getUserOfId = (id) => get(`api/admin/user/detail?id=${id}`)
 // 添加用户
@@ -40,7 +40,7 @@ export const deleteComment = (id) => get(`api/admin/comment/delete?id=${id}`)
 
 // =======================> 歌手 API
 // 返回所有歌手
-export const getAllSinger = () => get(`api/admin/singer`)
+export const getAllSinger = (params) => post(`api/admin/singer`,params)
 // 添加歌手
 export const setSinger = (params) => post(`api/admin/singer/add`, params)
 // 更新歌手信息
@@ -71,7 +71,7 @@ export const addSong = (form) => post('/api/admin/song/add',form)
 // 添加歌单
 export const setSongList = (params) => post(`api/admin/song_list/add`, params)
 // 获取全部歌单
-export const getSongList = () => get(`api/admin/song_list`)
+export const getSongList = (params) => post(`api/admin/song_list`,params)
 // 更新歌单信息
 export const updateSongListMsg = (params) => post(`api/admin/song_list/update`, params)
 // 删除歌单

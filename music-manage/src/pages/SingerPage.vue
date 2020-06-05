@@ -6,7 +6,7 @@
         <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true" plain>添加歌手</el-button>
       </div>
-      <el-table ref="multipleTable" size="mini" border style="width: 100%" height="550px" :data="data" @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" size="mini" border style="width: 100%" height="700px" :data="tableData" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
         <el-table-column label="歌手图片" width="110" align="center">
           <template slot-scope="scope">
@@ -58,9 +58,9 @@
           @current-change="handleCurrentChange"
           background
           layout="total, prev, pager, next"
-          :current-page="currentPage"
-          :page-size="pageSize"
-          :total="tableData.length">
+          :current-page.sync="currentPage"
+          :page-size.sync="pageSize"
+          :total.sync="total">
         </el-pagination>
       </div>
     </div>
@@ -183,13 +183,22 @@ export default {
       },
       pageSize: 5, // 页数
       currentPage: 1, // 当前页
+      total: 0,
+      page: {
+        dir: '',
+        limit: 0,
+        page: 0,
+        sort: '',
+        start: 0
+      },
       idx: -1
     }
   },
   computed: {
     // 计算当前表格中的数据
     data () {
-      return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      // return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      return this.tableData
     }
   },
   watch: {
@@ -213,6 +222,7 @@ export default {
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
+      this.getData()
     },
     uploadUrl (id) {
       return `${this.$store.state.HOST}/api/admin/singer/avatar/update?id=${id}`
@@ -241,10 +251,12 @@ export default {
     getData () {
       this.tableData = []
       this.tempDate = []
-      getAllSinger().then(res => {
-        this.tableData = res.data
-        this.tempDate = res.data
-        this.currentPage = 1
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getAllSinger(this.page).then(res => {
+        this.tableData = res.data.records
+        this.tempDate = res.data.records
+        this.total = res.data.total
       })
     },
     // 编辑
@@ -286,6 +298,7 @@ export default {
       deleteSinger(this.idx)
         .then(res => {
           if (res) {
+            this.currentPage = 1
             this.getData()
             this.notify('删除成功', 'success')
           } else {
