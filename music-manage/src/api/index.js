@@ -51,7 +51,7 @@ export const deleteSinger = (id) => get(`api/admin/singer/delete?id=${id}`)
 
 // =======================> 歌曲 API
 // 返回所有歌曲
-export const getAllSong = () => get(`api/admin/song`)
+export const getAllSong = (params) => post(`api/admin/song`,params)
 // 返回指定歌手ID的歌曲
 export const getSongOfSingerId = (id) => get(`api/admin/song/singer/detail?singerId=${id}`)
 // 返回的指定用户ID收藏列表

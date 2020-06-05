@@ -6,7 +6,7 @@
         <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10" clearable suffix-icon="el-icon-search"></el-input>
         <el-button type="primary" size="mini" @click="centerDialogVisible = true" plain>添加歌单</el-button>
       </div>
-      <el-table :data="data" border size="mini" style="width: 100%" height="550px" ref="multipleTable" @selection-change="handleSelectionChange">
+      <el-table :data="data" border size="mini" style="width: 100%" height="700px" ref="multipleTable" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
         <el-table-column label="歌单图片" width="100" align="center" icon="el-icon-loading">
           <template slot-scope="scope">
@@ -84,7 +84,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="centerDialogVisible = false" plain>取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsongList" plain>确 定</el-button>
+        <el-button type="primary" size="mini" @click="addSongList" plain>确 定</el-button>
       </span>
     </el-dialog>
 
@@ -195,6 +195,7 @@ export default {
       this.page.page = this.currentPage
       this.page.limit = this.pageSize
       getSongList(this.page).then((res) => {
+        console.log(res)
         this.tableData = res.data.records
         this.tempDate = res.data.records
         this.total = res.data.total
@@ -225,12 +226,6 @@ export default {
     },
     // 保存编辑
     saveEdit () {
-      // let params = new URLSearchParams()
-      // params.append('id', this.form.id)
-      // params.append('title', this.form.title)
-      // params.append('pic', this.form.pic)
-      // params.append('introduction', this.form.introduction)
-      // params.append('style', this.form.style)
       updateSongListMsg(this.form)
         .then(res => {
           if (res.status === 200) {
@@ -249,12 +244,7 @@ export default {
       this.editVisible = false
     },
     // 添加歌单
-    addsongList () {
-      // let params = new URLSearchParams()
-      // params.append('title', this.registerForm.title)
-      // params.append('pic', '/data/img/songListPic/123.jpg')
-      // params.append('introduction', this.registerForm.introduction)
-      // params.append('style', this.registerForm.style)
+    addSongList () {
       setSongList(this.registerForm).then(res => {
         if (res.status === 200) {
           this.getData()

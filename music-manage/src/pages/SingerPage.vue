@@ -298,7 +298,6 @@ export default {
       deleteSinger(this.idx)
         .then(res => {
           if (res) {
-            this.currentPage = 1
             this.getData()
             this.notify('删除成功', 'success')
           } else {
