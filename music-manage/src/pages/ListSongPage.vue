@@ -129,8 +129,6 @@ export default {
   methods: {
     // 获取歌单
     getData () {
-      this.tableData = []
-      this.tempDate = []
       getSongBySongListId(this.$route.query.id)
         .then(res => {
           for (let item of res.data) {

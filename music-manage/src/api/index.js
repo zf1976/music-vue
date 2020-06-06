@@ -8,7 +8,7 @@ export const getLoginStatus = (params) => post(`api/admin/login/status`,params)
 
 // =======================> 用户 API
 // 返回所有用户
-export const getAllUser = (params) => post(`api/admin/user`, params)
+export const getUserPage = (params) => post(`api/admin/user`, params)
 // 返回指定ID的用户
 export const getUserOfId = (id) => get(`api/admin/user/detail?id=${id}`)
 // 添加用户

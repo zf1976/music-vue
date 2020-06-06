@@ -165,7 +165,7 @@
 
 <script type="application/javascript">
 import { mixin } from '../mixins'
-import { addUser, updateUserMsg, getAllUser, deleteUser } from '../api/index'
+import { addUser, updateUserMsg, getUserPage, deleteUser } from '../api/index'
 
 export default {
   name: 'consumer-page',
@@ -393,9 +393,7 @@ export default {
     getData () {
       this.page.limit = this.pageSize
       this.page.page = this.currentPage
-      this.tableData = []
-      this.tempDate = []
-      getAllUser(this.page).then((res) => {
+      getUserPage(this.page).then((res) => {
         this.tableData = res.data.records
         this.tempDate = res.data.records
         this.total = res.data.total

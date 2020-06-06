@@ -61,7 +61,7 @@
         <el-pagination
           @current-change="handleCurrentChange"
           background
-          layout="total, prev, pager, next"
+          layout="total, prev, pager, next, jumper"
           :current-page="currentPage"
           :page-size="pageSize"
           :total="total">
@@ -190,12 +190,9 @@ export default {
     },
     // 获取歌单信息
     getData () {
-      this.tableData = []
-      this.tempDate = []
       this.page.page = this.currentPage
       this.page.limit = this.pageSize
       getSongList(this.page).then((res) => {
-        console.log(res)
         this.tableData = res.data.records
         this.tempDate = res.data.records
         this.total = res.data.total

@@ -103,8 +103,6 @@ export default {
   methods: {
     // 获取评论
     getData () {
-      this.tableData = []
-      this.tempDate = []
       let promise
       if (this.$route.query.type === 0) {
         promise = getCommentOfSongId(this.$route.query.id)

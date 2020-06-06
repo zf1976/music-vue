@@ -57,7 +57,7 @@
         <el-pagination
           @current-change="handleCurrentChange"
           background
-          layout="total, prev, pager, next"
+          layout="total, prev, pager, next, jumper"
           :current-page.sync="currentPage"
           :page-size.sync="pageSize"
           :total.sync="total">
@@ -249,8 +249,6 @@ export default {
     },
     // 获取歌手
     getData () {
-      this.tableData = []
-      this.tempDate = []
       this.page.page = this.currentPage
       this.page.limit = this.pageSize
       getAllSinger(this.page).then(res => {

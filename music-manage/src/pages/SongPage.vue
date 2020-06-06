@@ -84,7 +84,7 @@
         <el-pagination
           @current-change="handleCurrentChange"
           background
-          layout="total, prev, pager, next"
+          layout="total, prev, pager, next, jumper"
           :current-page="currentPage"
           :page-size="pageSize"
           :total="tableData.length">
@@ -228,8 +228,6 @@ export default {
   methods: {
     // 获取歌曲
     getData () {
-      this.tableData = []
-      this.tempDate = []
       getSongOfSingerId(this.singerId).then((res) => {
         console.log('歌手作品===========>', res.data)
         this.tableData = res.data

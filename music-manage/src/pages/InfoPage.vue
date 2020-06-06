@@ -75,7 +75,7 @@
 
 <script>
 import { mixin } from '../mixins'
-import { getAllSinger, getSongList, getAllSong, getAllUser } from '../api/index'
+import { getAllSinger, getSongList, getAllSong, getUserPage } from '../api/index'
 
 export default {
   mixins: [mixin],
@@ -171,7 +171,7 @@ export default {
   },
   methods: {
     getUser () {
-      getAllUser().then(res => {
+      getUserPage().then(res => {
         this.userCount = res.data.records.length
         this.userSex.rows[0]['总数'] = this.setSex(1, res.data.records)
         this.userSex.rows[1]['总数'] = this.setSex(0, res.data.records)

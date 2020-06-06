@@ -13,7 +13,7 @@
 <script>
 import Swiper from '../components/Swiper'
 import ContentList from '../components/ContentList'
-import { getSongList, getAllSinger } from '../api/index'
+import { getSongListPage, getSingerPage } from '../api/index'
 
 export default {
   name: 'home',
@@ -26,7 +26,14 @@ export default {
       songsList: [
         {name: '歌单', list: []},
         {name: '歌手', list: []}
-      ]
+      ],
+      page: {
+        dir: '',
+        limit: 10,
+        page: 1,
+        sort: '',
+        start: 0
+      }
     }
   },
   created () {
@@ -37,17 +44,17 @@ export default {
   },
   methods: {
     getSongList (path) {
-      getSongList()
+      getSongListPage(this.page)
         .then(res => {
-          this.songsList[0].list = res.data.slice(0, 10)
+          this.songsList[0].list = res.data.records
         })
         .catch(err => {
           console.log(err)
         })
     },
     getSinger () {
-      getAllSinger().then(res => {
-        this.songsList[1].list = res.data.slice(0, 10)
+      getSingerPage(this.page).then(res => {
+        this.songsList[1].list = res.data.records
       })
         .catch(err => {
           console.log(err)

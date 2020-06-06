@@ -1,5 +1,5 @@
 <template>
-  <div class="song-list">
+  <div class="song-list" >
     <ul class="song-list-header">
       <li
         v-for="(item, index) in songStyle"
@@ -18,7 +18,7 @@
           layout="total, prev, pager, next"
           :current-page="currentPage"
           :page-size="pageSize"
-          :total="albumDatas.length">
+          :total="total">
         </el-pagination>
       </div>
     </div>
@@ -29,7 +29,7 @@
 import ContentList from '../components/ContentList'
 import { mapGetters } from 'vuex'
 import { songStyle } from '../assets/data/songList'
-import { getSongList, getSongListOfStyle } from '../api/index'
+import { getSongListPage, getSongListOfStyle } from '../api/index'
 
 export default {
   name: 'song-list',
@@ -41,9 +41,18 @@ export default {
       songStyle: [], // 歌单导航栏类别
       activeName: '全部歌单',
       pageSize: 15, // 页数
+      total: 0,     //数量
       currentPage: 1, // 当前页
-      albumDatas: [] // 歌单
+      albumData: [], // 歌单
+      page: {
+        dir: '',
+        limit: 15,
+        page: 1,
+        sort: '',
+        start: 0
+      }
     }
+
   },
   computed: {
     ...mapGetters([
@@ -51,7 +60,8 @@ export default {
     ]),
     // 计算当前表格中的数据
     data () {
-      return this.albumDatas.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      // return this.albumDatas.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      return this.albumData
     }
   },
   mounted () {
@@ -62,23 +72,26 @@ export default {
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
+      this.getSongList('page')
     },
     // 获取歌单
     handleChangeView: function (name) {
       this.activeName = name
-      this.albumDatas = []
+      this.albumData = []
       if (name === '全部歌单') {
         this.getSongList(this.cur_page)
       } else {
         this.getSongListOfStyle(name)
       }
     },
-    // 获取全部歌单
+    // 分页获取歌单
     getSongList (page) {
-      getSongList()
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getSongListPage(this.page)
         .then(res => {
-          this.currentPage = 1
-          this.albumDatas = res.data
+          this.total = res.data.total
+          this.albumData = res.data.records
         })
         .catch(err => {
           console.log(err)
@@ -89,7 +102,7 @@ export default {
       getSongListOfStyle(style)
         .then(res => {
           this.currentPage = 1
-          this.albumDatas = res.data
+          this.albumData = res.data
         })
         .catch(err => {
           console.log(err)
