@@ -23,6 +23,8 @@ export const getSongList = () => get('api/app/song_list')
 export const getSongListPage = (params) => post('api/app/song_list', params)
 // 根据歌单类型获取歌单
 export const getSongListOfStyle = (style) => get(`api/app/song_list/style/detail?style=${style}`)
+// 根据歌单类型获取分页歌单
+export const getSongListPageOfStyle = (params) => post('api/app/song_list/style/detail', params)
 // 返回标题包含文字的歌单
 export const getSongListOfLikeTitle = (keywords) => get(`api/app/song_list/like_title/detail?title=${keywords}`)
 // 返回歌单里指定歌单ID的歌曲
@@ -36,6 +38,8 @@ export const getAllSinger = () => get('api/app/singer')
 export const getSingerPage = (params) => post('api/app/singer', params)
 // 通过性别对歌手分类
 export const getSingerOfSex = (sex) => get(`api/app/singer/sex/detail?sex=${sex}`)
+// 通过性别对歌手分页查询
+export const getSingerPageOfSex = (params) => post('api/app/singer/sex/detail', params)
 
 
 // =======================> 收藏 API

@@ -17,7 +17,7 @@
         layout="total, prev, pager, next"
         :current-page="currentPage"
         :page-size="pageSize"
-        :total="albumDatas.length">
+        :total="total">
       </el-pagination>
     </div>
   </div>
@@ -26,7 +26,7 @@
 <script>
 import ContentList from '../components/ContentList'
 import { singerStyle } from '../assets/data/singer'
-import { getAllSinger, getSingerOfSex } from '../api/index'
+import { getSingerPage, getSingerPageOfSex } from '../api/index'
 
 export default {
   name: 'singer',
@@ -39,13 +39,27 @@ export default {
       activeName: '全部歌手',
       pageSize: 15, // 页数
       currentPage: 1, // 当前页
-      albumDatas: []
+      total: 0,
+      albumData: [],
+      page: {
+        data:{
+          sex: 0
+        },
+        dir: '',
+        limit: 15,
+        page: 1,
+        sort: '',
+        start: 0
+      },
+      flag: true,
+      flagSex: 0
     }
   },
   computed: {
     // 计算当前表格中的数据
     data () {
-      return this.albumDatas.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      // return this.albumData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+      return this.albumData
     }
   },
   created () {
@@ -56,22 +70,32 @@ export default {
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
+      if (!this.flag) {
+        this.getSingerSex(this.flagSex)
+      } else {
+        this.getAllSinger()
+      }
     },
     handleChangeView (item) {
       this.activeName = item.name
-      this.albumDatas = []
+      this.currentPage = 1
       if (item.name === '全部歌手') {
+        this.flag = true
         this.getAllSinger()
       } else {
+        this.flag = false
+        this.flagSex = item.type
         this.getSingerSex(item.type)
       }
     },
     // 获取所有歌手
     getAllSinger () {
-      getAllSinger()
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getSingerPage(this.page)
         .then(res => {
-          this.currentPage = 1
-          this.albumDatas = res.data
+          this.total = res.data.total
+          this.albumData = res.data.records
         })
         .catch(err => {
           console.log(err)
@@ -79,10 +103,13 @@ export default {
     },
     // 通过性别对歌手分类
     getSingerSex (sex) {
-      getSingerOfSex(sex)
+      this.page.data.sex = sex
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getSingerPageOfSex(this.page)
         .then(res => {
-          this.currentPage = 1
-          this.albumDatas = res.data
+          this.total = res.data.total
+          this.albumData = res.data.records
         })
         .catch(err => {
           console.log(err)

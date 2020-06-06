@@ -29,7 +29,7 @@
 import ContentList from '../components/ContentList'
 import { mapGetters } from 'vuex'
 import { songStyle } from '../assets/data/songList'
-import { getSongListPage, getSongListOfStyle } from '../api/index'
+import { getSongListPage, getSongListPageOfStyle } from '../api/index'
 
 export default {
   name: 'song-list',
@@ -45,12 +45,16 @@ export default {
       currentPage: 1, // 当前页
       albumData: [], // 歌单
       page: {
+        data:{
+          style: null
+        },
         dir: '',
         limit: 15,
         page: 1,
         sort: '',
         start: 0
-      }
+      },
+      flag: true
     }
 
   },
@@ -72,15 +76,21 @@ export default {
     // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
-      this.getSongList('page')
+      if (!this.flag) {
+        this.getSongListOfStyle(this.activeName)
+      } else {
+        this.getSongList('page')
+      }
     },
     // 获取歌单
     handleChangeView: function (name) {
       this.activeName = name
-      this.albumData = []
+      this.currentPage = 1
       if (name === '全部歌单') {
+        this.flag = true
         this.getSongList(this.cur_page)
       } else {
+        this.flag = false
         this.getSongListOfStyle(name)
       }
     },
@@ -99,10 +109,13 @@ export default {
     },
     // 通过类别获取歌单
     getSongListOfStyle (style) {
-      getSongListOfStyle(style)
+      this.page.data.style = style
+      this.page.page = this.currentPage
+      this.page.limit = this.pageSize
+      getSongListPageOfStyle(this.page)
         .then(res => {
-          this.currentPage = 1
-          this.albumData = res.data
+          this.total = res.data.total
+          this.albumData = res.data.records
         })
         .catch(err => {
           console.log(err)
