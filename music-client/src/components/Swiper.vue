@@ -1,8 +1,8 @@
 <template>
-  <div class="swiper">
+  <div class="swiper" style="color: #ffffff">
     <div class="swiper-container">
-      <el-carousel :interval="4000" type="card" height="280px">
-        <el-carousel-item v-for="(item, index) in swiperList" :key="index">
+      <el-carousel :interval="4000" type="card" height="280px" style="color: #ffffff">
+        <el-carousel-item v-for="(item, index) in swiperList" :key="index" style="color: #dfdfdf">
           <img :src="item.picImg"/>
         </el-carousel-item>
       </el-carousel>

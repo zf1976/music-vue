@@ -97,10 +97,9 @@
   display: none;
   line-height: 1px;
   position: absolute;
-  // 搜索框颜色
   background-color: $color-white;
   // 菜单文字阴影
-  @include box-shadow(1px 1px 10px rgb(2, 151, 251));
+  @include box-shadow(1px 1px 10px rgba(99, 99, 99, 0));
   width: $header-menu-width;
   padding: $header-menu-padding;
   border-radius: $header-menu-radius;

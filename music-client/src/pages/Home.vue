@@ -1,11 +1,11 @@
 <template>
-  <div class="home" style="color: #000000">
+  <div class="home">
     <!--轮播图-->
     <swiper/>
     <!--热门歌单/歌手-->
-    <div class="section" v-for="(item, index) in songsList" :key="index">
-      <div class="section-title">{{item.name}}</div>
-      <content-list :contentList="item.list"></content-list>
+    <div class="section" style="background-color: #787878" v-for="(item, index) in songsList" :key="index" >
+      <div style="color: #060606" class="section-title">{{item.name}}</div>
+      <content-list :contentList="item.list" style="color: #000000"></content-list>
     </div>
   </div>
 </template>

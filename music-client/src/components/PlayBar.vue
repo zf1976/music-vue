@@ -40,11 +40,11 @@
           <div ref="progress" class="progress" @mousemove="mousemove" style="color: #ffffff">
             <!--进度条-->
             <div ref="bg" class="bg" @click="updatemove" style="color: #ffffff">
-              <div ref="curProgress" class="cur-progress"  style="color: #ffffff" :style="{width: curLength+'%'}"></div>
+              <div ref="curProgress" class="cur-progress" style="background: #ef2a2a" :style="{width: curLength+'%'}"></div>
             </div>
             <!--进度条 end -->
             <!--拖动的点点-->
-            <div ref="idot" class="idot" :style="{left: curLength+'%'}" style="color: #ffffff" @mousedown="mousedown" @mouseup="mouseup"></div>
+            <div ref="idot" class="idot" :style="{left: curLength+'%'}" back @mousedown="mousedown" @mouseup="mouseup" style="background: rgba(255,255,255,0.33)"></div>
             <!--拖动的点点 end -->
           </div>
         </div>

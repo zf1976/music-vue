@@ -23,8 +23,8 @@
   top: 150px;
   z-index: 99;
   background-color: $color-white;
-  @include box-shadow(1px 1px 10px rgba(255, 255, 255, 0.4));
-  border: 1px solid rgba(247, 247, 247, 0.5);
+  @include box-shadow(1px 1px 10px rgb(0, 0, 0));
+  border: 1px solid rgba(247, 247, 247, 0);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   overflow: hidden;

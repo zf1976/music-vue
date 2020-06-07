@@ -1,6 +1,6 @@
 <template>
   <div class="the-footer">
-    <p v-for="(item, index) in list" :key="index">
+    <p v-for="(item, index) in list" :key="index" style="color: #000000">
       {{item}}
     </p>
   </div>

@@ -2,6 +2,7 @@
   <div class="singer">
     <ul class="singer-header">
       <li
+        style="color: #000000"
         v-for="(item, index) in singerStyle"
         :key="index"
         :class="{active: item.name === activeName}"

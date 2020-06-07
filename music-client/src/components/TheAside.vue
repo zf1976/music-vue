@@ -1,9 +1,9 @@
 <template>
-  <transition name="slide-fade">
-    <div class="the-aside" v-if="showAside">
-      <h2 class="title">播放列表</h2>
-      <ul class="menus">
-        <li v-for="(item, index) in listOfSongs" :class="{'is-play': id === item.id}" :key="index" @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
+  <transition name="slide-fade" >
+    <div class="the-aside" v-if="showAside" style="color: #d6d6d6">
+      <h2 class="title" style="color: #000000">播放列表</h2>
+      <ul class="menus" >
+        <li  v-for="(item, index) in listOfSongs" :class="{'is-play': id === item.id}" :key="index" @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
           {{replaceFName(item.name)}}
         </li>
       </ul>
