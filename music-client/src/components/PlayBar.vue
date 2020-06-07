@@ -8,74 +8,74 @@
     <div class="kongjian" >
       <!--上一首-->
       <div class="item" @click="prev">
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" style="color: #ffffff">
           <use xlink:href="#icon-ziyuanldpi"></use>
         </svg>
       </div>
       <!--播放-->
-      <div class="item" @click="togglePlay">
-        <svg class="icon" aria-hidden="true">
+      <div class="item" @click="togglePlay" >
+        <svg class="icon" aria-hidden="true" style="color: #ffffff">
           <use :xlink:href="playButtonUrl"></use>
         </svg>
       </div>
       <!--下一首-->
       <div class="item" @click="next">
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" style="color: #ffffff">
           <use xlink:href="#icon-ziyuanldpi1"></use>
         </svg>
       </div>
       <!--歌曲图片-->
-      <div class="item-img" @click="goPlayerPage">
-         <img :src=picUrl alt="">
+      <div class="item-img" @click="goPlayerPage" >
+         <img :src=picUrl alt="" style="color: #ffffff">
       </div>
       <!--播放进度-->
-      <div class="playing-speed">
+      <div class="playing-speed" style="color: #ffffff">
         <!--播放开始时间-->
-        <div class="current-time">{{ nowTime }}</div>
+        <div class="current-time" style="color: #ffffff">{{ nowTime }}</div>
         <div class="progress-box">
           <div class="item-song-title">
-            <div style="color: #ffffff">{{this.title}}</div>
+            <div style="color: #f8f8f8">{{this.title}}</div>
             <div style="color: #ffffff">{{this.artist}}</div>
           </div>
-          <div ref="progress" class="progress" @mousemove="mousemove">
+          <div ref="progress" class="progress" @mousemove="mousemove" style="color: #ffffff">
             <!--进度条-->
-            <div ref="bg" class="bg" @click="updatemove">
-              <div ref="curProgress" class="cur-progress" :style="{width: curLength+'%'}"></div>
+            <div ref="bg" class="bg" @click="updatemove" style="color: #ffffff">
+              <div ref="curProgress" class="cur-progress"  style="color: #ffffff" :style="{width: curLength+'%'}"></div>
             </div>
             <!--进度条 end -->
             <!--拖动的点点-->
-            <div ref="idot" class="idot" :style="{left: curLength+'%'}" @mousedown="mousedown" @mouseup="mouseup"></div>
+            <div ref="idot" class="idot" :style="{left: curLength+'%'}" style="color: #ffffff" @mousedown="mousedown" @mouseup="mouseup"></div>
             <!--拖动的点点 end -->
           </div>
         </div>
         <!--播放结束时间-->
-        <div class="left-time">{{ songTime }}</div>
+        <div class="left-time" style="color: #ffffff">{{ songTime }}</div>
       </div>
       <!--音量-->
-      <div class="item icon-volume" >
-        <svg v-if="volume !== 0" class="icon" aria-hidden="true">
+      <div class="item icon-volume">
+        <svg v-if="volume !== 0" class="icon" aria-hidden="true" style="color: #ffffff">
           <use xlink:href="#icon-yinliang1"></use>
         </svg>
-        <svg v-else class="icon" aria-hidden="true">
+        <svg v-else class="icon" aria-hidden="true" style="color: #f4f4f4">
           <use xlink:href="#icon-yinliangjingyinheix"></use>
         </svg>
         <el-slider class="volume" v-model="volume" :vertical="true"></el-slider>
       </div>
       <!--添加-->
-      <div class="item" @click="collection">
-        <svg :class="{ active: isActive }" class="icon" aria-hidden="true">
+      <div class="item" @click="collection" >
+        <svg :class="{ active: isActive }" class="icon" aria-hidden="true" style="color: #ffffff">
           <use xlink:href="#icon-xihuan-shi"></use>
         </svg>
       </div>
       <!--下载-->
-      <div class="item" @click="download">
-        <svg class="icon" aria-hidden="true" >
+      <div class="item" @click="download" >
+        <svg class="icon" aria-hidden="true" style="color: #ffffff">
           <use  xlink:href="#icon-xiazai"></use>
         </svg>
       </div>
       <!--歌曲列表-->
-      <div class="item" @click="changeAside">
-        <svg class="icon" aria-hidden="true">
+      <div class="item" @click="changeAside" >
+        <svg class="icon" aria-hidden="true" style="color: #ffffff">
           <use xlink:href="#icon-liebiao"></use>
         </svg>
       </div>
