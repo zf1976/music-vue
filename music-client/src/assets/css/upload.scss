@@ -12,7 +12,10 @@
     color: $color-black;
   }
   hr {
-    width: 98%;
+    border:none; border-bottom:1px solid #ddd;
+    height: 5px;
+    //width: 98px;
+    //border: 0;
   }
   .section {
     height: 400px;

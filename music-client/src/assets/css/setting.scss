@@ -2,12 +2,12 @@
 @import "global.scss";
 
 .setting {
-  margin: 30px 10%;
+  margin: 30px 12%;
   margin-top: $header-height + 20px;
   min-height: 65vh;
   @include layout;
   background-color: $color-white;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 /* 左侧导航栏 */
@@ -39,8 +39,10 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $color-blue-active;
-      color: $color-white;
+      //background-color: $color-blue-active;
+      background-color: #747373;
+      //color: $color-white;
+      color: #000000;
     }
     &:active {
       background-color: $color-blue-shallow;
