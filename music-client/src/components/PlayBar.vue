@@ -34,8 +34,8 @@
         <div class="current-time">{{ nowTime }}</div>
         <div class="progress-box">
           <div class="item-song-title">
-            <div>{{this.title}}</div>
-            <div>{{this.artist}}</div>
+            <div style="color: #ffffff">{{this.title}}</div>
+            <div style="color: #ffffff">{{this.artist}}</div>
           </div>
           <div ref="progress" class="progress" @mousemove="mousemove">
             <!--进度条-->
@@ -69,8 +69,8 @@
       </div>
       <!--下载-->
       <div class="item" @click="download">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-xiazai"></use>
+        <svg class="icon" aria-hidden="true" >
+          <use  xlink:href="#icon-xiazai"></use>
         </svg>
       </div>
       <!--歌曲列表-->

@@ -4,7 +4,7 @@
       <div class="singer-img">
         <img :src="attachImageUrl(singer.pic)" alt="">
       </div>
-      <ul class="info">
+      <ul class="info" style="color: #000000">
         <li v-if="singer.sex !== 2">性别：{{attachSex(singer.sex)}}</li>
         <li>生日：{{attachBirth(singer.birth)}}</li>
         <li>故乡：{{singer.location}}</li>

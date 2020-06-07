@@ -4,6 +4,10 @@ const songStyle = [
     type: 'One'
   },
   {
+    name: '后摇',
+    type: 'Rock'
+  },
+  {
     name: '华语',
     type: 'Two'
   },

@@ -9,6 +9,7 @@
   line-height: $header-height;
   padding: $header-padding;
   margin: $header-margin;
+  // 播放条颜色
   background-color: $theme-header-color;
   @include box-shadow($box-shadow);
   box-sizing: border-box;
@@ -22,6 +23,8 @@
   white-space: nowrap;
   cursor: pointer;
   .icon {
+
+    // logo颜色
     @include icon(($header-height / 3) * 2, $color-black);
     vertical-align: middle;
   }
@@ -35,6 +38,7 @@
     margin: $header-nav-margin;
     padding: $header-nav-padding;
     font-size: $font-size-header;
+    // 没点击时的按钮亮度
     color: $color-grey;
     text-align: center;
     border-bottom: none;
@@ -91,10 +95,12 @@
 
 .menu {
   display: none;
-  line-height: 0px;
+  line-height: 1px;
   position: absolute;
+  // 搜索框颜色
   background-color: $color-white;
-  @include box-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
+  // 菜单文字阴影
+  @include box-shadow(1px 1px 10px rgb(2, 151, 251));
   width: $header-menu-width;
   padding: $header-menu-padding;
   border-radius: $header-menu-radius;
@@ -111,20 +117,23 @@
     line-height: 40px;
 
     &:hover {
+      // 歌单空白头
       background-color: $theme-color;
+      // 歌单盒子颜色
       color: $color-white;
     }
   }
 
   :nth-child(1):before {
     content: " ";
-    display: block; /*独占一行*/
+ //   display: block; /*独占一行*/
+    display: none;
     position: absolute;
     right: 45px;
     top: -5px; /*果断的露出上半部分*/
     width: 10px;
     height: 10px;
-    background-color: $color-white;
+   // background-color: $color-white;
     /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
     transform: rotate(45deg);
   }

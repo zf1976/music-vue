@@ -1,7 +1,7 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="header-logo" @click="goHome">
+    <div class="header-logo" @click="goHome" style="color: #c4c4c4">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-erji"></use>
       </svg>
