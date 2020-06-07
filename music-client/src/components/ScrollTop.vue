@@ -1,6 +1,6 @@
 <template>
-  <div class="scroll-top" @click="returnTop" style="color: #c5c5c5">
-    <div class="box-in" style="color: #ffffff"></div>
+  <div class="scroll-top" @click="returnTop">
+    <div class="box-in" ></div>
   </div>
 </template>
 

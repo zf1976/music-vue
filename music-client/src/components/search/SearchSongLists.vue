@@ -1,6 +1,6 @@
 <template>
-  <div class="search-song-Lists">
-    <content-list :contentList="albumData"></content-list>
+  <div class="search-song-Lists" style="height: 500px">
+    <content-list :contentList="albumData" style="background-color: rgba(0,0,0,0.01)"></content-list>
   </div>
 </template>
 

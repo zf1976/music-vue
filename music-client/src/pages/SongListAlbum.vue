@@ -4,7 +4,7 @@
       <div class="album-img">
         <img :src=attachImageUrl(singers.pic) alt="">
       </div>
-      <div class="album-info" style="color: #000000">
+      <div class="album-info">
         <h2>简介：</h2>
         <span>
           {{singers.introduction}}
@@ -34,7 +34,7 @@
       <!--歌曲-->
       <div>
         <album-content :songList="listOfSongs">
-          <template slot="title">歌单</template>
+          <template slot="title" style="color: #000000">歌单</template>
         </album-content>
         <comment :playId="songListId" :type="1"></comment>
       </div>

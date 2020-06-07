@@ -36,3 +36,27 @@ li {
 .pagination {
   @include layout;
 }
+///*设置xx条/页的框的颜色*/
+//.el-select .el-input.is-focus .el-input__inner,
+//.el-pagination__sizes .el-input .el-input__inner:hover,
+//.el-select .el-input__inner:focus {
+//  border-color: #0e0e0e;
+//}
+///*设置当前页码的样式，及鼠标移上其他页码时的样式,以及左右箭头鼠标移上的样式*/
+//.el-pager li.active,.el-pager li:hover,
+//.el-pagination button:hover {
+//  color: #000000;
+//}
+///*设置当前选中的“xx条/页”的样式，是点击以后弹出来的框里的*/
+//li.el-select-dropdown__item.selected {
+//  color: #18ab8f;
+//}
+//
+//.el-pagination.is-background .el-pager li:not(.disabled).active {
+//  background-color: #ff0000; // 进行修改背景和字体
+//  color: #ff0000;
+//}
+//.sysBox .el-pagination.is-background .el-pager li:not(.disabled).active {
+//  background-color: #FD7A3A;   // 进行修改背景和字体
+//  color: #fff;
+//}

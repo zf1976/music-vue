@@ -58,7 +58,8 @@
     font-size: $font-size-default;
     border: 0;
     text-indent: 10px;
-    background-color: $color-light-grey;
+    //background-color: $color-light-grey;
+    background: rgb(77, 77, 77);
     &:focus {
       outline: none;
     }
@@ -66,7 +67,8 @@
 
   .search-btn {
     @include layout(center, center);
-    background-color: $color-blue-active;
+    //background-color: $color-blue-active;
+    background-color: #0384d0;
     width: $header-search-btn-width;
     height: $header-search-btn-height;
     cursor: pointer;
@@ -99,7 +101,7 @@
   position: absolute;
   background-color: $color-white;
   // 菜单文字阴影
-  @include box-shadow(1px 1px 10px rgba(99, 99, 99, 0));
+  @include box-shadow(1px 1px 10px rgb(0, 0, 0));
   width: $header-menu-width;
   padding: $header-menu-padding;
   border-radius: $header-menu-radius;
@@ -136,9 +138,9 @@
     /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
     transform: rotate(45deg);
   }
-  // :nth-child(1):hover:before {
-  // background-color: $theme-color;
-  // }
+   :nth-child(1):hover:before {
+   background-color: $theme-color;
+   }
 }
 
 .show {

@@ -9,7 +9,9 @@
   bottom: 80px;
   padding-top: 20px;
   text-align: center;
-  background-color: $color-white;
+  color: #ffffff;
+  //background-color: $color-white;
+  background: rgba(0, 0, 0, 0.62);
   border-radius: 20%;
   overflow: hidden;
   @include box-shadow(0 0 4px 3px rgba(0, 0, 0, 0.2));
@@ -20,6 +22,7 @@
     visibility: hidden;
   }
   &:before {
+    color: #9a9a9a;
     content: "回到顶部";
     position: absolute;
     font-weight: bold;

@@ -1,18 +1,18 @@
 //Colors
-$color-white: rgba(50, 50, 50, 0.85);
+$color-white: rgba(0, 0, 0, 0.85);
 $color-light-white: rgba(0, 0, 0, 0.8);
-$color-grey: rgb(229, 229, 229);
+$color-grey: rgb(3, 132, 208);
 $color-light-grey: rgba(123, 123, 123, 0.49);
 $color-black: rgb(0, 0, 0);
-$color-blue-shallow: rgba(0, 0, 0, 0.31);
-$color-blue: rgba(227, 227, 227, 0.58);
-$color-blue-active: #000000;
+$color-blue-shallow: rgba(109, 109, 109, 0.31);
+$color-blue: rgba(58, 57, 57, 0.56);
+$color-blue-active: rgba(135, 135, 135, 0.83);
 $color-blue-light: #2aa3ef;
 $color-blue-dark: #2796dd;
 
 // Theme Global Color
 $theme-color: $color-blue;
-$theme-background-color: rgba(128, 127, 127, 0.75);
+$theme-background-color: rgba(58, 57, 57, 0.56);
 $theme-header-color: $color-light-white;
 $theme-footer-color: $theme-background-color;
 $theme-play-bar-color: $color-light-white;
@@ -51,10 +51,10 @@ $content-padding: 0 120px 50px 120px;
 $border-radius-songlist: 12px;
 
 // footer
-$footer-height: 180px;
+$footer-height:378px;
 
 // play-bar
 $play-bar-height: 60px;
 
 // style
-$box-shadow: 0 0 10px rgba(134, 134, 134, 0.4);
+$box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);

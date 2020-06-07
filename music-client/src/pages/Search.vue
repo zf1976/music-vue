@@ -1,10 +1,10 @@
 <template>
-  <div class="search">
+  <div class="search" style="background-color: rgba(61,61,61,0.62)" >
     <nav class="searchList-nav" ref="change">
       <span :class="{isActive: toggle === 'Songs'}" @click="handleChangeView('Songs', 0)">歌曲</span>
       <span :class="{isActive: toggle === 'SongLists'}" @click="handleChangeView('SongLists', 1)">歌单</span>
     </nav>
-    <component :is="currentView"></component>
+    <component :is="currentView" ></component>
   </div>
 </template>
 

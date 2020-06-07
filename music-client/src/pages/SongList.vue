@@ -1,5 +1,5 @@
 <template>
-  <div class="song-list" >
+  <div class="song-list" style="background-color: #787878">
     <ul class="song-list-header">
       <li
         style="color: #000000"
@@ -10,16 +10,17 @@
         {{item.name}}
       </li>
     </ul>
-    <div class="song-content">
+    <div class="song-content" style="color: #000000">
       <content-list :contentList="data"></content-list>
       <div class="pagination">
         <el-pagination
           @current-change="handleCurrentChange"
-          background
-          layout="total, prev, pager, next"
-          :current-page="currentPage"
-          :page-size="pageSize"
-          :total="total">
+          :hide-on-single-page="true"
+          layout=" prev, pager, next"
+          style="background-color: rgb(125,125,125) "
+          :current-page.sync="currentPage"
+          :page-size.sync="pageSize"
+          :total.sync="total">
         </el-pagination>
       </div>
     </div>
@@ -42,7 +43,7 @@ export default {
       songStyle: [], // 歌单导航栏类别
       activeName: '全部歌单',
       pageSize: 15, // 页数
-      total: 0,     //数量
+      total: 0, // 数量
       currentPage: 1, // 当前页
       albumData: [], // 歌单
       page: {

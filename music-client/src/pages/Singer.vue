@@ -1,6 +1,6 @@
 <template>
-  <div class="singer">
-    <ul class="singer-header">
+  <div class="singer" style="background-color: #787878">
+    <ul class="singer-header" style="background-color: #787878">
       <li
         style="color: #000000"
         v-for="(item, index) in singerStyle"
@@ -14,11 +14,11 @@
     <div class="pagination">
       <el-pagination
         @current-change="handleCurrentChange"
-        background
-        layout="total, prev, pager, next"
-        :current-page="currentPage"
-        :page-size="pageSize"
-        :total="total">
+        :hide-on-single-page="true"
+        layout=" prev, pager, next"
+        :current-page.sync="currentPage"
+        :page-size.sync="pageSize"
+        :total.sync="total">
       </el-pagination>
     </div>
   </div>

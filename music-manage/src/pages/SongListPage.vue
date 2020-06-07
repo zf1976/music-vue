@@ -291,4 +291,8 @@ export default {
     display: flex;
     justify-content: center;
 }
+.sysBox .el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #FD7A3A;   // 进行修改背景和字体
+color: #fff;
+}
 </style>
