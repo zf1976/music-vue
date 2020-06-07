@@ -6,7 +6,7 @@
   height: $footer-height;
   background-color: $theme-footer-color;
   // 页脚文字
-  color: #d2d2d2;
+  color: #000000;
   @include layout(center, center, column);
   p {
     height: 30px;

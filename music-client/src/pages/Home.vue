@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" style="color: #000000">
     <!--轮播图-->
     <swiper/>
     <!--热门歌单/歌手-->

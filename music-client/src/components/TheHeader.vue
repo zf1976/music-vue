@@ -1,9 +1,9 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="header-logo" @click="goHome" style="color: #c4c4c4">
+    <div class="header-logo" @click="goHome" style="color: #e1e1e1">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-erji"></use>
+        <use xlink:href="#icon-erji" style="color: #e1e1e1"></use>
       </svg>
       <span>{{musicName}}</span>
     </div>
@@ -15,7 +15,7 @@
         <div class="header-search">
           <input type="text" placeholder="搜索音乐" @keyup.enter="goSearch()" v-model="keywords">
           <div class="search-btn"  @click="goSearch()" >
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true" style="color: #eaeaea">
               <use xlink:href="#icon-sousuo"></use>
             </svg>
           </div>
