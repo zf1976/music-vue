@@ -4,7 +4,7 @@
   margin-top: $header-height - 10px;
   .section {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: $content-padding;
     background-color: $color-white;
     box-sizing: border-box;
@@ -17,6 +17,7 @@
       text-align: center;
       color: $color-black;
       box-sizing: border-box;
+      border-bottom-width: 100px;
     }
   }
 }
