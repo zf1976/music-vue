@@ -4,14 +4,16 @@
 .signUp {
   position: absolute;
   top: $header-height + 20px;
-  background-color: $color-white;
-  border-radius: 10px;
+  //background-color: $color-white;
+  background-color: #252525;
+  border-radius: 7px;
   width: 350px;
   margin-left: 850px;
   padding: 30px 30px;
 
   .signUp-head {
     text-align: center;
+    color: #e1e1e1;
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;

@@ -4,13 +4,14 @@
 .song-list-album {
   margin-top: $header-height;
   padding-top: 150px;
-  background-color: $theme-background-color;
-
+  //background-color: $theme-background-color;
+  background-color: rgba(58, 57, 57, 0.56);
   &::before {
     /*背景*/
     content: "";
     // 菜单栏字体颜色
-    background-color: $theme-color;
+    //background-color: $theme-color;
+    background-color: #515151;
     position: absolute;
     top: 0;
     width: 100%;

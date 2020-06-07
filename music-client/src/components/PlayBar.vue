@@ -26,7 +26,7 @@
       </div>
       <!--歌曲图片-->
       <div class="item-img" @click="goPlayerPage" >
-         <img :src=picUrl alt="" style="color: #ffffff">
+         <img :src=picUrl alt="" style="color: #ffffff;border-radius: 5px;border: 0px">
       </div>
       <!--播放进度-->
       <div class="playing-speed" style="color: #ffffff">
@@ -44,7 +44,7 @@
             </div>
             <!--进度条 end -->
             <!--拖动的点点-->
-            <div ref="idot" class="idot" :style="{left: curLength+'%'}" back @mousedown="mousedown" @mouseup="mouseup" style="background: rgba(255,255,255,0.33)"></div>
+            <div ref="idot" class="idot" :style="{left: curLength+'%'}" back @mousedown="mousedown" @mouseup="mouseup" style="background: rgb(128,128,128)"></div>
             <!--拖动的点点 end -->
           </div>
         </div>

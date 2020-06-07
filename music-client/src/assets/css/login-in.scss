@@ -8,11 +8,13 @@
   height: 210px;
   top: $header-height + 60px;
   padding: 30px 50px;
-  border-radius: 10px;
-  background-color: $color-white;
+  border-radius: 7px;
+  //background-color: $color-white;
+  background-color: #252525;
 
   .login-head {
     text-align: center;
+    color: #e1e1e1;
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;

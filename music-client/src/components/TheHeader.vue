@@ -1,14 +1,14 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="header-logo" @click="goHome" style="color: #000000">
+    <div class="header-logo" @click="goHome" style="color: #fefefe">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-erji" style="color: #000000"></use>
+        <use xlink:href="#icon-erji" style="color: #fefefe"></use>
       </svg>
       <span>{{musicName}}</span>
     </div>
-    <ul class="navbar" ref="change" style="color: #2796dd">
-      <li :class="{active: item.name === activeName }" v-for="item in navMsg" :key="item.path" @click="goPage(item.path, item.name)">
+    <ul class="navbar" ref="change" >
+      <li :class="{active: item.name === activeName }" style="color: #fefefe" v-for="item in navMsg" :key="item.path" @click="goPage(item.path, item.name)">
         {{item.name}}
       </li>
       <li>
@@ -21,15 +21,15 @@
           </div>
         </div>
       </li>
-      <li v-if="!loginIn" :class="{active: item.name === activeName }" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li>
+      <li v-if="!loginIn" style="color: #fefefe" :class="{active: item.name === activeName }" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li>
     </ul>
     <!--设置-->
-    <div class="header-right" v-show="loginIn">
+    <div class="header-right" v-show="loginIn" >
       <div id="user">
-        <img :src="attachImageUrl(avatar)" alt="">
+        <img :src="attachImageUrl(avatar)" alt="" >
       </div>
-      <ul class="menu">
-        <li v-for="(item, index) in menuList" :key="index" @click="goMenuList(item.path)">{{item.name}}</li>
+      <ul class="menu" style="background-color: rgb(51,51,51)">
+        <li style="color: #ffffff" v-for="(item, index) in menuList" :key="index" @click="goMenuList(item.path)">{{item.name}}</li>
       </ul>
     </div>
   </div>
