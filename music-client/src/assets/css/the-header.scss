@@ -10,7 +10,8 @@
   padding: $header-padding;
   margin: $header-margin;
   // 播放条颜色
-  background-color: $theme-header-color;
+  //background-color: $theme-header-color;
+  background-color: rgba(0, 0, 0, 0.8);
   @include box-shadow($box-shadow);
   box-sizing: border-box;
   z-index: 100;
@@ -118,8 +119,9 @@
     line-height: 40px;
 
     &:hover {
-      // 歌单空白头
-      background-color: $theme-color;
+      // 歌单点击头颜色
+      // background-color: $theme-color;
+      background-color: rgba(63, 63, 63, 0.56);
       // 歌单盒子颜色
       color: $color-white;
     }
@@ -139,7 +141,8 @@
     transform: rotate(45deg);
   }
    :nth-child(1):hover:before {
-   background-color: $theme-color;
+   //background-color: $theme-color;
+     background-color: rgba(39, 39, 39, 0.56);
    }
 }
 

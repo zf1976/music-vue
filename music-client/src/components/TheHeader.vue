@@ -1,14 +1,14 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="header-logo" @click="goHome" style="color: #eaeaea">
+    <div class="header-logo" @click="goHome" style="color: #000000">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-erji" style="color: #e6e6e6"></use>
+        <use xlink:href="#icon-erji" style="color: #000000"></use>
       </svg>
       <span>{{musicName}}</span>
     </div>
-    <ul class="navbar" ref="change">
-      <li :class="{active: item.name === activeName}" v-for="item in navMsg" :key="item.path" @click="goPage(item.path, item.name)">
+    <ul class="navbar" ref="change" style="color: #2796dd">
+      <li :class="{active: item.name === activeName }" v-for="item in navMsg" :key="item.path" @click="goPage(item.path, item.name)">
         {{item.name}}
       </li>
       <li>
@@ -21,7 +21,7 @@
           </div>
         </div>
       </li>
-      <li v-if="!loginIn" :class="{active: item.name === activeName}" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li>
+      <li v-if="!loginIn" :class="{active: item.name === activeName }" v-for="item in loginMsg" :key="item.type" @click="goPage(item.path, item.name)">{{item.name}}</li>
     </ul>
     <!--设置-->
     <div class="header-right" v-show="loginIn">

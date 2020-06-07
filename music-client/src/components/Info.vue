@@ -1,11 +1,11 @@
 <template>
   <div class="info">
-    <p class="title">编辑个人资料</p>
+    <p class="title" style="color: #000000">编辑个人资料</p>
     <hr/>
     <div class="personal">
       <el-form :model="registerForm" class="demo-ruleForm" label-width="80px">
-        <el-form-item prop="username" label="用户名">
-          <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
+        <el-form-item prop="username" label="用户名"  >
+          <el-input  :disabled="true" v-model="registerForm.username" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password" label="密码">
           <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
@@ -16,20 +16,20 @@
             <el-radio :label="1">男</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item prop="phoneNum" label="手机">
-          <el-input  placeholder="手机" v-model="registerForm.phoneNum" ></el-input>
+        <el-form-item  prop="phoneNum" label="手机">
+          <el-input  placeholder="手机"   v-model="registerForm.phoneNum" clearable></el-input>
         </el-form-item>
         <el-form-item prop="email" label="邮箱">
-          <el-input v-model="registerForm.email" placeholder="邮箱"></el-input>
+          <el-input   placeholder="邮箱" v-model="registerForm.email" clearable></el-input>
         </el-form-item>
         <el-form-item prop="birth" label="生日">
-          <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" clearable></el-date-picker>
         </el-form-item>
-        <el-form-item prop="introduction" label="签名">
-          <el-input  type="textarea" placeholder="签名" v-model="registerForm.introduction" ></el-input>
+        <el-form-item prop="introduction" label="签名" style="">
+          <el-input  type="textarea" placeholder="签名"  v-model="registerForm.introduction" clearable></el-input>
         </el-form-item>
         <el-form-item prop="location" label="地区">
-          <el-select v-model="registerForm.location" placeholder="地区" style="width:100%">
+          <el-select v-model="registerForm.location" placeholder="地区"  clearable style="width:100%;" >
             <el-option
               v-for="item in cities"
               :key="item.value"
@@ -40,8 +40,8 @@
         </el-form-item>
       </el-form>
     <div class="btn">
-      <div @click="saveMsg()">保存</div>
-      <div @click="goback">取消</div>
+      <div @click="saveMsg()" style="background-color: #2aa3ef;border-radius: 5px">保存</div>
+      <div @click="goback" style="background-color: #2aa3ef;border-radius: 5px">取消</div>
     </div>
     </div>
 </div>

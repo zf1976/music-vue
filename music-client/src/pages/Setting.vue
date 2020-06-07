@@ -1,7 +1,7 @@
 <template>
-  <div class="setting">
+  <div class="setting" style="background-color: rgba(156,156,156,0)">
     <div class="leftCol">
-      <div class="settingsMainHeader">设置</div>
+      <div class="settingsMainHeader" style="color: #000000">设置</div>
       <ul class="setting-aside">
         <li v-for="(item, index) in settingList" :key="index" :class="{activeColor: activeName === item.name}" @click="handleClick(item)">
           {{item.name}}
