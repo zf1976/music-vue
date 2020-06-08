@@ -3,11 +3,12 @@
 
 .the-footer {
   width: 100%;
-  //height: $footer-height;
-  height: 500px;
-  // background-color: $theme-footer-color;
+  height: $footer-height;
+  //height: 220px;
+ // background-color: $theme-footer-color;
   background-color: rgba(57, 57, 57, 0.56);
   // 页脚文字
+
   color: #da0000;
   @include layout(center, center, column);
   p {
