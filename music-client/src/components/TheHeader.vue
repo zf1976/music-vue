@@ -82,6 +82,7 @@ export default {
   methods: {
     goHome () {
       this.$router.push({path: '/'})
+      this.$router.go(0)
     },
     goPage (path, value) {
       document.querySelector('.menu').classList.remove('show')
@@ -98,6 +99,7 @@ export default {
     goMenuList (path) {
       if (path === 0) {
         this.$store.commit('setIsActive', false)
+        this.notify('已登出','success')
       }
       document.querySelector('.menu').classList.remove('show')
       if (path) {

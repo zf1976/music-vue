@@ -4,13 +4,13 @@
   margin-top: $header-height;
   padding-top: 150px;
   //background-color: $theme-background-color;
-  background-color: #515151;
+  background-color: rgba(58, 57, 57, 0.56);
 
   &::before {
     /*背景*/
     content: "";
     //background-color: $theme-color;
-    background-color: #515151;
+    //background-color: rgba(58, 57, 57, 0.56);
     position: absolute;
     top: 0;
     width: 100%;
