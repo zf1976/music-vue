@@ -10,7 +10,7 @@
       </ul>
       <!--没歌词-->
       <div v-else class="no-lyric" key="no-lyric">
-        <span>暂无歌词</span>
+        <span >暂无歌词</span >
       </div>
     </transition-group>
     <comment :playId="id" :type="0"></comment>
