@@ -342,6 +342,7 @@ export default {
         })
         .catch(err => {
           console.log(err)
+          this.notify('歌曲已存在', 'error')
         })
       this.editVisible = false
     },
