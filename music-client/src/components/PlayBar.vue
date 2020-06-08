@@ -26,7 +26,7 @@
       </div>
       <!--歌曲图片-->
       <div class="item-img" @click="goPlayerPage" >
-         <img :src=picUrl alt="" style="color: #ffffff;border-radius: 5px;border: 0px">
+         <img :src=picUrl alt="" style="color: #ffffff;border-radius: 2px;border: 0">
       </div>
       <!--播放进度-->
       <div class="playing-speed" style="color: #ffffff">
@@ -295,6 +295,9 @@ export default {
         }
       }
     },
+    cycle () {
+
+    },
     // 下一首
     next () {
       if (this.listIndex !== -1 && this.listOfSongs.length > 1) {
@@ -333,7 +336,8 @@ export default {
             if (res.status === 200) {
               this.$store.commit('setIsActive', true)
               this.notify('收藏成功', 'success')
-            } else if (res.code === 2) {
+              console.log(res)
+            } else if (res.status === 500) {
               this.notify('已收藏', 'warning')
             } else {
               this.$notify.error({
@@ -344,6 +348,7 @@ export default {
           })
           .catch(err => {
             console.log(err)
+            this.notify('已收藏', 'warning')
           })
       } else {
         this.notify('请先登录', 'warning')

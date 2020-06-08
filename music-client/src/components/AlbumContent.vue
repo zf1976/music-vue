@@ -1,23 +1,23 @@
 <template>
-  <div class="content" style="background-color: rgba(0,0,0,0.27)">
-    <h1 class="title" style="color: #000000">
-      <slot name="title" style="color: #000000"></slot>
+  <div class="content" style="background-color: rgb(29,29,29)">
+    <h1 class="title" style="color: #c1c1c1">
+      <slot name="title"></slot>
     </h1>
     <hr>
     <ul>
       <li class="list-title" >
-        <div class="song-item" style="color: #000000">
+        <div class="song-item" style="color: #d4d4d4">
           <span class="item-index"></span>
           <span class="item-title">歌曲名</span>
           <span class="item-name">艺人</span>
           <span class="item-intro">专辑</span>
         </div>
       </li>
-      <li class="list-content" v-for="(item, index) in songList" :key="index" style="color: #000000">
+      <li class="list-content" v-for="(item, index) in songList" :key="index" style="color: #c1c1c1">
         <div class="song-item" :class="{'is-play': id === item.id}"  @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
           <span class="item-index">
             <span v-if="id !== item.id">{{index + 1}}</span>
-            <svg v-if="id === item.id" class="icon" aria-hidden="true" style="color: rgb(0,0,0)">
+            <svg v-if="id === item.id" class="icon" aria-hidden="true" style="color: #c1c1c1">
               <use xlink:href="#icon-yinliang"></use>
             </svg>
           </span>

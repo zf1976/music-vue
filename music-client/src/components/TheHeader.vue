@@ -108,6 +108,10 @@ export default {
       }
     },
     goSearch () {
+      if (this.keywords === null || this.keywords === ''){
+        this.notify('请输入搜索内容','warning')
+        return
+      }
       this.$store.commit('setSearchword', this.keywords)
       this.$router.push({path: '/search', query: {keywords: this.keywords}})
     }

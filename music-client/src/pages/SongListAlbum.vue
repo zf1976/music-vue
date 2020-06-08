@@ -4,7 +4,7 @@
       <div class="album-img">
         <img :src=attachImageUrl(singers.pic) alt="">
       </div>
-      <div class="album-info">
+      <div class="album-info" >
         <h2>简介：</h2>
         <span>
           {{singers.introduction}}

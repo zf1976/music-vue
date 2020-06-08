@@ -3,12 +3,14 @@
 .my-music {
   margin-top: $header-height;
   padding-top: 150px;
-  background-color: $theme-background-color;
+  //background-color: $theme-background-color;
+  background-color: #515151;
 
   &::before {
     /*背景*/
     content: "";
-    background-color: $theme-color;
+    //background-color: $theme-color;
+    background-color: #515151;
     position: absolute;
     top: 0;
     width: 100%;
