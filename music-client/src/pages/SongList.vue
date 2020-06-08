@@ -17,7 +17,7 @@
           @current-change="handleCurrentChange"
           :hide-on-single-page="true"
           layout=" prev, pager, next"
-          style="background-color: rgb(125,125,125) "
+          style="background-color: #787878"
           :current-page.sync="currentPage"
           :page-size.sync="pageSize"
           :total.sync="total">

@@ -15,6 +15,7 @@
       <el-pagination
         @current-change="handleCurrentChange"
         :hide-on-single-page="true"
+        style="background-color: #787878"
         layout=" prev, pager, next"
         :current-page.sync="currentPage"
         :page-size.sync="pageSize"
