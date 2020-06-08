@@ -6,7 +6,7 @@
       </div>
       <div class="album-info" >
         <h2>简介：</h2>
-        <span>
+        <span style="color: rgba(255,255,255,0.65)">
           {{singers.introduction}}
         </span>
       </div>

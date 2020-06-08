@@ -9,12 +9,11 @@
   bottom: 80px;
   padding-top: 20px;
   text-align: center;
-  color: #ffffff;
   //background-color: $color-white;
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(50, 50, 50, 0.82);
   border-radius: 20%;
   overflow: hidden;
-  @include box-shadow(0 0 4px 3px rgba(0, 0, 0, 0.2));
+  @include box-shadow(0 0 4px 3px rgba(0, 0, 0, 0.11));
   &:hover:before {
     top: 50%;
   }
@@ -22,7 +21,7 @@
     visibility: hidden;
   }
   &:before {
-    color: #9a9a9a;
+    color: #e1e1e1;
     content: "回到顶部";
     position: absolute;
     font-weight: bold;
@@ -38,7 +37,9 @@
   display: inline-block;
   height: 15px;
   width: 15px;
-  border: 1px solid $color-black;
-  border-color: $color-black transparent transparent $color-black;
+  //border: 1px solid $color-black;
+  border: 1px solid;
+  //border-color: $color-black transparent transparent $color-black;
+  border-color: #cdcdcd transparent transparent #cdcdcd;
   transform: rotate(45deg);
 }

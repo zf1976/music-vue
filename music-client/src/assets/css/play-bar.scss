@@ -21,7 +21,8 @@
     height: $play-bar-height;
     width: 100%;
     min-width: 1000px;
-    background-color: $theme-play-bar-color;
+    //background-color: $theme-play-bar-color;
+    background-color: rgba(6, 6, 6, 0.95);
 
     .item {
       position: relative;

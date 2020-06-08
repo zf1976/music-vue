@@ -11,7 +11,7 @@
   margin: $header-margin;
   // 播放条颜色
   //background-color: $theme-header-color;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.95);
   @include box-shadow($box-shadow);
   box-sizing: border-box;
   z-index: 100;
@@ -40,7 +40,8 @@
     padding: $header-nav-padding;
     font-size: $font-size-header;
     // 没点击时的按钮亮度
-    color: $color-grey;
+    //color: $color-grey;
+    color: #0384d0;
     text-align: center;
     border-bottom: none;
     box-sizing: border-box;
@@ -153,6 +154,8 @@
 }
 
 .active {
-  color: $theme-color !important;
-  border-bottom: 5px solid $theme-color !important;
+  //color: $theme-color !important;
+  //border-bottom: 5px solid $theme-color !important;
+  color: #e10d0d !important;
+  border-bottom: 5px solid #e10d0d !important;
 }
