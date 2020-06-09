@@ -1,9 +1,9 @@
 <template>
   <div class="the-header">
     <!--图标-->
-    <div class="header-logo" @click="goHome" style="color: #fefefe">
+    <div class="header-logo" @click="goHome" style="color: rgba(254,254,254,0.85)">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-erji" style="color: #fefefe"></use>
+        <use xlink:href="#icon-erji" style="color: rgba(254,254,254,0.85)"></use>
       </svg>
       <span>{{musicName}}</span>
     </div>

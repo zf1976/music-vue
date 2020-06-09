@@ -80,6 +80,8 @@ export const getSongOfId = (id) => get(`api/app/song/detail?id=${id}`)
 export const getSongOfSingerId = (id) => get(`api/app/song/singer/detail?singerId=${id}`)
 // 返回指定歌手名的歌曲
 export const getSongOfSingerName = (keywords) => get(`api/app/song/singer_name/detail?name=${keywords}`)
+// 歌曲下载量播放量
+export const updateStatistical = (params) => post('api/app/song/update/statistical',params)
 // 下载音乐
 export const download = (url) => axios({
   method: 'get',

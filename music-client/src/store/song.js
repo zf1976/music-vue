@@ -10,6 +10,8 @@ const song = {
     title: '', //  歌名
     artist: '', //  歌手名
     picUrl: '', // 歌曲图片
+    downloads: 0, // 歌曲下载量
+    playCount: 0, // 播放量
     autoNext: true, // 用于触发自动播放下一首
     lyric: [], // 未处理的歌词数据
     listOfSongs: [], // 当前歌单列表
@@ -39,6 +41,20 @@ const song = {
         url = JSON.parse(window.sessionStorage.getItem('url') || null)
       }
       return url
+    },
+    downloads: state => {
+      let downloads = state.downloads
+      if (!downloads) {
+        downloads = JSON.parse(window.sessionStorage.getItem('downloads') || 0)
+      }
+      return downloads
+    },
+    playCount: state => {
+      let playCount = state.playCount
+      if (!playCount) {
+        playCount = JSON.parse(window.sessionStorage.getItem('playCount') || 0)
+      }
+      return playCount
     },
     duration: state => {
       let duration = state.duration
@@ -142,6 +158,14 @@ const song = {
       state.url = url
       window.sessionStorage.setItem('url', JSON.stringify(url))
     },
+    setDownloads: (state, downloads) => {
+      state.downloads = downloads
+      window.sessionStorage.setItem('downloads', JSON.stringify(downloads))
+    },
+    setPlayCount: (state, playCount) => {
+      state.playCount = playCount
+      window.sessionStorage.setItem('playCount', JSON.stringify(playCount))
+    },
     setDuration: (state, duration) => {
       state.duration = duration
       window.sessionStorage.setItem('duration', JSON.stringify(duration))
@@ -162,7 +186,7 @@ const song = {
       state.artist = artist
       window.sessionStorage.setItem('artist', JSON.stringify(artist))
     },
-    setpicUrl: (state, picUrl) => {
+    setPicUrl: (state, picUrl) => {
       state.picUrl = picUrl
       window.sessionStorage.setItem('picUrl', JSON.stringify(picUrl))
     },

@@ -9,12 +9,14 @@
         <div class="song-item" style="color: #d4d4d4">
           <span class="item-index"></span>
           <span class="item-title">歌曲名</span>
-          <span class="item-name">艺人</span>
+          <span class="item-intro">艺人</span>
           <span class="item-intro">专辑</span>
+          <span class="item-name">下载量</span>
+          <span class="item-name">播放量</span>
         </div>
       </li>
       <li class="list-content" v-for="(item, index) in songList" :key="index" style="color: #c1c1c1">
-        <div class="song-item" :class="{'is-play': id === item.id}"  @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
+        <div class="song-item" :class="{'is-play': id === item.id}"  @click="toPlay(item.id, item.url, item.pic, index, item.name, item.lyric,item.downloads, item.playCount)">
           <span class="item-index" >
             <span v-if="id !== item.id">{{index + 1}}</span>
             <svg v-if="id === item.id" class="icon" aria-hidden="true" style="color: #e10d0d">
@@ -22,8 +24,10 @@
             </svg>
           </span>
           <span class="item-title">{{replaceFName(item.name)}}</span>
-          <span class="item-name">{{replaceLName(item.name)}}</span>
+          <span class="item-intro">{{replaceLName(item.name)}}</span>
           <span class="item-intro">{{item.introduction}}</span>
+          <span class="item-name">{{' '+item.downloads+' 次'}}</span>
+          <span class="item-name">{{' '+item.playCount+' 次'}}</span>
         </div>
       </li>
     </ul>

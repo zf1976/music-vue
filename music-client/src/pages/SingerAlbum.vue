@@ -58,6 +58,7 @@ export default {
       getSongOfSingerId(this.singerId)
         .then(res => {
           this.$store.commit('setListOfSongs', res.data)
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)

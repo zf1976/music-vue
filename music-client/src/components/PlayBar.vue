@@ -86,7 +86,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
-import { setCollection, download } from '../api/index'
+import { setCollection, download, updateStatistical } from '../api/index'
 
 export default {
   name: 'play-bar',
@@ -114,6 +114,8 @@ export default {
       'title', // 歌名
       'artist', // 歌手名
       'picUrl', // 歌曲图片
+      'downloads',
+      'playCount',
       'curTime', // 当前音乐的播放位置
       'duration', // 音乐时长
       'listOfSongs', // 当前歌单列表
@@ -178,8 +180,16 @@ export default {
           eleLink.click()
           // 然后移除
           document.body.removeChild(eleLink)
+        }).catch(err => {
+          console.log(err)
         })
-        .catch(err => {
+      let params = {id: this.id, playCount: this.playCount, downloads: this.listOfSongs[this.listIndex].downloads + 1}
+      this.listOfSongs[this.listIndex].downloads = this.listOfSongs[this.listIndex].downloads + 1
+      this.$store.commit('setDownloads', this.listOfSongs[this.listIndex].downloads)
+      updateStatistical(params)
+        .then(res => {
+          console.log(res)
+        }).catch(err => {
           console.log(err)
         })
     },
