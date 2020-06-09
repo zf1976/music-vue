@@ -6,7 +6,8 @@
   margin-top: $header-height + 20px;
   min-height: 65vh;
   @include layout;
-  background-color: $color-white;
+  //background-color: $color-white;
+  background-color: #0384d0;
   border-radius: 15px;
 }
 
@@ -52,7 +53,8 @@
 
 .activeColor {
   background-color: $color-blue-shallow !important;
-  color: $color-white;
+  //color: $color-white;
+  //color: #0384d0;
 }
 
 /* 右边内容 */

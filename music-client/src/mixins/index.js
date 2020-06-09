@@ -7,7 +7,8 @@ export const mixin = {
       'userId',
       'loginIn',
       'listOfSongs', // 当前歌单列表
-      'listIndex' // 当前歌曲在歌曲列表的位置
+      'listIndex', // 当前歌曲在歌曲列表的位置
+      'flagId'
     ])
   },
   methods: {
@@ -38,36 +39,38 @@ export const mixin = {
     },
     // 播放
     toPlay: function (id, url, pic, index, name, lyric, downloads, playCount) {
-      if (id === this.listOfSongs[this.listIndex].id) {
+      if (id === this.flagId) {
         this.$notify.error({
           message: '播放中，请勿重复点击',
           showClose: false
         })
         return
-      }
-      this.$store.commit('setId', id)
-      this.$store.commit('setListIndex', index)
-      this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
-      this.$store.commit('setPicUrl', this.$store.state.configure.HOST + pic)
-      this.$store.commit('setTitle', this.replaceFName(name))
-      this.$store.commit('setArtist', this.replaceLName(name))
-      this.$store.commit('setLyric', this.parseLyric(lyric))
-      this.$store.commit('setDownloads', downloads)
-      this.$store.commit('setPlayCount', playCount)
-      this.$notify.success({
-        message: '已经开始播放',
-        showClose: false
-      })
-      let params = {id: id, playCount: playCount + 1, downloads: downloads}
-      console.log(params)
-      this.listOfSongs[this.listIndex].playCount = this.listOfSongs[this.listIndex].playCount + 1
-      this.$store.commit('setPlayCount', this.listOfSongs[this.listIndex].playCount)
-      updateStatistical(params)
-        .then(res => {
-          console.log(res)
-        }).catch(err => {
-          console.log(err)
+      } else {
+        this.$notify.success({
+          message: '已经开始播放',
+          showClose: false
         })
+        this.$store.commit('setId', id)
+        this.$store.commit('setListIndex', index)
+        this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
+        this.$store.commit('setPicUrl', this.$store.state.configure.HOST + pic)
+        this.$store.commit('setTitle', this.replaceFName(name))
+        this.$store.commit('setArtist', this.replaceLName(name))
+        this.$store.commit('setLyric', this.parseLyric(lyric))
+        this.$store.commit('setDownloads', downloads)
+        this.$store.commit('setPlayCount', playCount)
+        this.$store.commit('setFlagId', id)
+        let params = {id: id, playCount: playCount + 1, downloads: downloads}
+        this.listOfSongs[this.listIndex].playCount = this.listOfSongs[this.listIndex].playCount + 1
+        this.$store.commit('setPlayCount', this.listOfSongs[this.listIndex].playCount)
+        updateStatistical(params)
+          .then(res => {
+            console.log(res)
+          }).catch(err => {
+            console.log(err)
+          })
+      }
+
       if (this.loginIn) {
         this.$store.commit('setIsActive', false)
         getCollectionOfUser(this.userId)

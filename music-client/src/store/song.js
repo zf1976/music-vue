@@ -17,6 +17,7 @@ const song = {
     listOfSongs: [], // 当前歌单列表
     tempList: {}, // 单个歌单信息
     listIndex: null, // 当前歌曲在歌曲列表的位置
+    flagId: null, // 标记歌曲是否播放
     volume: 50
   },
   getters: {
@@ -27,6 +28,13 @@ const song = {
         playButtonUrl = JSON.parse(window.sessionStorage.getItem('playButtonUrl') || null)
       }
       return playButtonUrl
+    },
+    flagId: state => {
+      let flagId = state.flagId
+      if (!flagId) {
+        flagId = JSON.parse(window.sessionStorage.getItem('id') || null)
+      }
+      return flagId
     },
     id: state => {
       let id = state.id
@@ -153,6 +161,10 @@ const song = {
     setId: (state, id) => {
       state.id = id
       window.sessionStorage.setItem('id', JSON.stringify(id))
+    },
+    setFlagId: (state, flagId) => {
+      state.flagId = flagId
+      window.sessionStorage.setItem('flagId', JSON.stringify(flagId))
     },
     setUrl: (state, url) => {
       state.url = url
