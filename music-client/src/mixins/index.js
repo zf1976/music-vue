@@ -46,10 +46,6 @@ export const mixin = {
         })
         return
       } else {
-        this.$notify.success({
-          message: '已经开始播放',
-          showClose: false
-        })
         this.$store.commit('setId', id)
         this.$store.commit('setListIndex', index)
         this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
@@ -63,9 +59,12 @@ export const mixin = {
         let params = {id: id, playCount: playCount + 1, downloads: downloads}
         this.listOfSongs[this.listIndex].playCount = this.listOfSongs[this.listIndex].playCount + 1
         this.$store.commit('setPlayCount', this.listOfSongs[this.listIndex].playCount)
+        this.$notify.success({
+          message: '已经开始播放',
+          showClose: false
+        })
         updateStatistical(params)
           .then(res => {
-            console.log(res)
           }).catch(err => {
             console.log(err)
           })
