@@ -82,7 +82,6 @@ export default {
   methods: {
     goHome () {
       this.$router.push({path: '/'})
-      this.$router.go(0)
     },
     goPage (path, value) {
       document.querySelector('.menu').classList.remove('show')
@@ -99,7 +98,7 @@ export default {
     goMenuList (path) {
       if (path === 0) {
         this.$store.commit('setIsActive', false)
-        this.notify('已登出','success')
+        this.$router.push({path: '/'})
       }
       document.querySelector('.menu').classList.remove('show')
       if (path) {
@@ -110,8 +109,8 @@ export default {
       }
     },
     goSearch () {
-      if (this.keywords === null || this.keywords === ''){
-        this.notify('请输入搜索内容','warning')
+      if (this.keywords === null || this.keywords === '') {
+        this.notify('请输入搜索内容', 'warning')
         return
       }
       this.$store.commit('setSearchword', this.keywords)
