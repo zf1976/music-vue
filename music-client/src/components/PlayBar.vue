@@ -39,7 +39,7 @@
           </div>
           <div ref="progress" class="progress" @mousemove="mousemove" style="color: #ffffff">
             <!--进度条-->
-            <div ref="bg" class="bg" @click="updatemove" style="color: #ffffff">
+            <div ref="bg" class="bg" @click="updateMove" style="color: #ffffff">
               <div ref="curProgress" class="cur-progress" style="background: #ef2a2a" :style="{width: curLength+'%'}"></div>
             </div>
             <!--进度条 end -->
@@ -86,7 +86,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
-import { setCollection, download, updateStatistical } from '../api/index'
+import { setCollection, download, updateStatistical, deleteCollection} from '../api/index'
 
 export default {
   name: 'play-bar',
@@ -280,7 +280,7 @@ export default {
       let newCurTime = this.duration * (percent * 0.01)
       this.$store.commit('setChangeTime', newCurTime)
     },
-    updatemove (e) {
+    updateMove (e) {
       if (!this.tag) {
         let curLength = this.$refs.bg.offsetLeft
         this.progressLength = this.$refs.progress.getBoundingClientRect().width
@@ -326,7 +326,7 @@ export default {
       if (url && url !== this.url) {
         this.$store.commit('setId', this.listOfSongs[this.listIndex].id)
         this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
-        this.$store.commit('setpicUrl', this.$store.state.configure.HOST + this.listOfSongs[this.listIndex].pic)
+        this.$store.commit('setPicUrl', this.$store.state.configure.HOST + this.listOfSongs[this.listIndex].pic)
         this.$store.commit('setTitle', this.replaceFName(this.listOfSongs[this.listIndex].name))
         this.$store.commit('setArtist', this.replaceLName(this.listOfSongs[this.listIndex].name))
         this.$store.commit('setLyric', this.parseLyric(this.listOfSongs[this.listIndex].lyric))
@@ -349,29 +349,24 @@ export default {
     },
     collection () {
       if (this.loginIn) {
-        // let params = new URLSearchParams()
-        // params.append('userId', this.userId)
-        // params.append('type', 0) // 0 代表歌曲， 1 代表歌单
-        // params.append('songId', this.id)
         let paramFrom = {'userId': this.userId, 'type': 0, 'songId': this.id}
         setCollection(paramFrom)
           .then(res => {
             if (res.status === 200) {
               this.$store.commit('setIsActive', true)
-              this.notify('收藏成功', 'success')
-              console.log(res)
-            } else if (res.status === 500) {
-              this.notify('已收藏', 'warning')
-            } else {
-              this.$notify.error({
-                title: '收藏失败',
-                showClose: false
-              })
+              this.notify('已添加到我喜欢的音乐', 'success')
             }
           })
+          // eslint-disable-next-line handle-callback-err
           .catch(err => {
-            console.log(err)
-            this.notify('已收藏', 'warning')
+            deleteCollection(paramFrom)
+              .then(res => {
+                if (res.status === 200) {
+                  console.log(this.listOfSongs.data)
+                  this.$store.commit('setIsActive', false)
+                  this.notify('取消喜欢成功', 'success')
+                }
+              })
           })
       } else {
         this.notify('请先登录', 'warning')

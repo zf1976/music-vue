@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import axios from 'axios'
 import { get, post } from './http'
+import id from "element-ui/src/locale/lang/id";
 
 // =======================> 用户 API
 // 登录
@@ -11,7 +12,8 @@ export const SignUp = (params) => post(`api/app/user/add`, params)
 export const updateUserMsg = (params) => post(`api/app/user/update`, params)
 // 返回指定ID的用户
 export const getUserOfId = (id) => get(`api/app/user/detail?id=${id}`)
-
+// 返回指定id用户头像
+export const getUserAvatar = (id) => get(`api/app/user/avatar?id=${id}`)
 // 返回指定ID集合的用户
 export const getUserOfIds = (ids) => get(`api/app/user/list/detail?ids=${ids}`)
 
@@ -47,7 +49,8 @@ export const getSingerPageOfSex = (params) => post('api/app/singer/sex/detail', 
 export const getCollectionOfUser = (userId) => get(`api/app/collection/detail?userId=${userId}`)
 // 添加收藏的歌曲 type: 0 代表歌曲， 1 代表歌单
 export const setCollection = (params) => post(`api/app/collection/add`, params)
-
+// 取消收藏
+export const deleteCollection = (params) => post(`api/app/collection/delete`, params)
 
 // =======================> 评分 API
 // 提交评分

@@ -20,6 +20,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
+import { getUserAvatar } from '../api'
 
 export default {
   name: 'upload',
@@ -41,13 +42,16 @@ export default {
     handleAvatarSuccess (res, file) {
       if (res.status === 200) {
         this.imageUrl = URL.createObjectURL(file.raw)
-        this.$store.commit('setAvatar', res.avatar)
-        this.$message({
-          message: '修改成功',
+        getUserAvatar(this.userId)
+          .then(res => {
+            if (res.status === 200) {
+              this.$store.commit('setAvatar', res.data)
+            }
+          })
+        this.$notify({
+          title: '修改成功',
           type: 'success'
         })
-      } else {
-        this.notify('修改失败', 'error')
       }
     },
     beforeAvatarUpload (file) {

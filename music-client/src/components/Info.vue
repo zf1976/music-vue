@@ -2,7 +2,7 @@
   <div class="info">
     <p class="title" style="color: #000000">编辑个人资料</p>
     <hr/>
-    <div class="personal" style="background-color: rgba(255,255,255,0.86);border-radius: 5px">
+    <div class="personal" style="background-color: rgba(255,255,255,0.7);border-radius: 5px;">
       <el-form :model="registerForm" class="demo-ruleForm" label-width="80px">
         <el-form-item prop="username" label="用户名"  >
           <el-input  :disabled="true" v-model="registerForm.username" placeholder="用户名"></el-input>
@@ -23,7 +23,7 @@
           <el-input   placeholder="邮箱" v-model="registerForm.email" clearable></el-input>
         </el-form-item>
         <el-form-item prop="birth" label="生日">
-          <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;" clearable></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd" v-model="registerForm.birth" style="width: 100%;" clearable></el-date-picker>
         </el-form-item>
         <el-form-item prop="introduction" label="签名" style="">
           <el-input  type="textarea" placeholder="签名"  v-model="registerForm.introduction" clearable></el-input>
@@ -41,7 +41,7 @@
       </el-form>
     <div class="btn">
       <div @click="saveMsg()" style="background-color: #2aa3ef;border-radius: 5px">保存</div>
-      <div @click="goback" style="background-color: #2aa3ef;border-radius: 5px">取消</div>
+      <div @click="goBack" style="background-color: #2aa3ef;border-radius: 5px">取消</div>
     </div>
     </div>
 </div>
@@ -90,15 +90,13 @@ export default {
           console.log(err)
         })
     },
-    goback () {
+    goBack () {
       this.$router.go(-1)
     },
     saveMsg () {
       updateUserMsg(this.registerForm)
         .then(res => {
           if (res.status === 200) {
-            this.showError = false
-            this.showSuccess = true
             this.$store.commit('setUsername', this.registerForm.username)
             this.$notify.success({
               title: '编辑成功',
@@ -108,8 +106,6 @@ export default {
               this.$router.go(-1)
             }, 2000)
           } else {
-            this.showSuccess = false
-            this.showError = true
             this.$notify.error({
               title: '编辑失败',
               showClose: true
@@ -117,6 +113,10 @@ export default {
           }
         })
         .catch(err => {
+          this.$notify.error({
+            title: '编辑失败',
+            showClose: true
+          })
           console.log(err)
         })
     }

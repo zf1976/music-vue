@@ -15,7 +15,7 @@
       <div class="album-title">个性签名: {{introduction}}</div>
       <div class="songs-body">
         <album-content :songList="collectList">
-          <template slot="title">我的收藏</template>
+          <template slot="title">我的喜欢的音乐</template>
         </album-content>
       </div>
     </div>

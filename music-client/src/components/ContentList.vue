@@ -2,9 +2,9 @@
   <div class="content-list">
     <ul class="section-content">
       <li class="content-item" style="background-color: #848484;color: #000000" v-for="(item, index) in contentList" :key="index">
-        <div class="kuo"  @click="goAblum(item, item.name)">
+        <div class="kuo"  @click="goAlbum(item, item.name)">
           <img class="item-img" :src="attachImageUrl(item.pic)" alt="" >
-          <div class="mask"  @click="goAblum(item, item.name)" >
+          <div class="mask"  @click="goAlbum(item, item.name)" >
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-bofang"></use>
             </svg>
@@ -26,7 +26,7 @@ export default {
     'contentList'
   ],
   methods: {
-    goAblum (item, type) {
+    goAlbum (item, type) {
       this.$store.commit('setTempList', item)
       if (type) {
         this.$router.push({path: `/singer-album/${item.id}`})

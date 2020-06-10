@@ -75,11 +75,7 @@ export default {
         .then(res => {
           // console.log('-----------获取登录信息---------------')
           if (res.status === 200) {
-            // _this.$message({
-            //   message: '登录成功',
-            //   type: 'success'
-            // })
-            _this.notify('登陆成功','success')
+            _this.notify('登陆成功', 'success')
             _this.setUserMsg(res.data)
             _this.$store.commit('setLoginIn', true)
             setTimeout(function () {
