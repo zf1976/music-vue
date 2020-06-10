@@ -114,6 +114,7 @@ export default {
       'title', // 歌名
       'artist', // 歌手名
       'picUrl', // 歌曲图片
+      'flagId',
       'downloads',
       'playCount',
       'curTime', // 当前音乐的播放位置
@@ -329,6 +330,18 @@ export default {
         this.$store.commit('setTitle', this.replaceFName(this.listOfSongs[this.listIndex].name))
         this.$store.commit('setArtist', this.replaceLName(this.listOfSongs[this.listIndex].name))
         this.$store.commit('setLyric', this.parseLyric(this.listOfSongs[this.listIndex].lyric))
+        this.$store.commit('setDownloads', this.downloads)
+        this.$store.commit('setPlayCount', this.playCount)
+        this.$store.commit('setFlagId', this.id)
+        let params = {id: this.id, playCount: this.playCount + 1, downloads: this.downloads}
+        this.listOfSongs[this.listIndex].playCount = this.listOfSongs[this.listIndex].playCount + 1
+        this.$store.commit('setPlayCount', this.listOfSongs[this.listIndex].playCount)
+        updateStatistical(params)
+          .then(res => {
+            console.log(res)
+          }).catch(err => {
+            console.log(err)
+          })
       }
     },
     goPlayerPage () {
