@@ -4,7 +4,7 @@
       <h2>评论</h2>
       <div class="comment-msg">
         <div class="comment-img">
-          <img :src=attachImageUrl(avatar) alt="">
+          <img :src=attachImageUrl(avatar) alt="" style="border-radius: 60px">
         </div>
         <el-input
           class="comment-input"
@@ -14,13 +14,13 @@
           v-model="textarea">
         </el-input>
       </div>
-      <el-button type="primary" class="sub-btn" @click="postComment()">评论</el-button>
+      <el-button  class="sub-btn" @click="postComment()" size="mini" plain>评论</el-button>
     </div>
     <p>精彩评论: 共 {{commentList.length}} 条评论</p>
     <ul class="popular" v-for="(item, index) in commentList" :key="index">
       <li>
         <div class="popular-img">
-          <img :src=attachImageUrl(userPic[index]) alt="">
+          <img :src=attachImageUrl(userPic[index]) alt="" style="border-radius: 60px">
         </div>
         <div class="popular-msg">
           <ul>

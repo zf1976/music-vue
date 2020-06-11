@@ -16,7 +16,7 @@ export const getUserOfId = (id) => get(`api/app/user/detail?id=${id}`)
 export const getUserAvatar = (id) => get(`api/app/user/avatar?id=${id}`)
 // 返回指定ID集合的用户
 export const getUserOfIds = (ids) => get(`api/app/user/list/detail?ids=${ids}`)
-
+export const changePass = (params) => post('api/app/user/security',params)
 
 // =======================> 歌单 API
 // 获取全部歌单
