@@ -27,6 +27,9 @@ const menuList = [{
   name: '设置',
   path: '/setting'
 }, {
+  name: '开通付费包',
+  path: '/vip'
+}, {
   name: '退出',
   path: 0
 }]
