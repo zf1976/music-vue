@@ -21,7 +21,10 @@ export const mixin = {
     },
     // 获取图片信息
     attachImageUrl (srcUrl) {
-      return srcUrl ? this.$store.state.configure.HOST + srcUrl || '../assets/img/user.jpg' : ''
+      return srcUrl ? this.$store.state.configure.HOST + srcUrl : '../assets/img/user.jpg'
+    },
+    getVipIconUrl (srcUrl) {
+      return srcUrl ? 'static/icon/vip2.png' : 'static/icon/vip1.png'
     },
     attachBirth (val) {
       let birth = String(val).match(/[0-9-]+(?=\s)/)

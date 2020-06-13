@@ -96,6 +96,7 @@ export default {
       this.$store.commit('setUserId', item.id)
       this.$store.commit('setUsername', item.username)
       this.$store.commit('setAvatar', item.avatar)
+      this.$store.commit('setMember', item.isMember)
     },
     goSignUp () {
       this.$router.push({path: '/sign-up'})

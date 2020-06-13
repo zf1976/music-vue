@@ -2,7 +2,8 @@ const user = {
   state: {
     userId: '',
     username: '',
-    avatar: ''
+    avatar: '',
+    isMember: ''
   },
   getters: {
     userId: state => {
@@ -25,6 +26,13 @@ const user = {
         avatar = JSON.parse(window.localStorage.getItem('avatar') || null)
       }
       return avatar
+    },
+    isMember: state => {
+      let isMember = state.isMember
+      if (!isMember) {
+        isMember = JSON.parse(window.localStorage.getItem('isMember') || null)
+      }
+      return isMember
     }
   },
   mutations: {
@@ -39,6 +47,10 @@ const user = {
     setAvatar: (state, avatar) => {
       state.avatar = avatar
       window.localStorage.setItem('avatar', JSON.stringify(avatar))
+    },
+    setMember: (state, isMember) => {
+      state.isMember = isMember
+      window.localStorage.setItem('isMember', JSON.stringify(isMember))
     }
   },
   actions: {}

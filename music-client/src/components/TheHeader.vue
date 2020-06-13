@@ -26,8 +26,11 @@
     <!--设置-->
     <div class="header-right" v-show="loginIn" >
       <div id="user">
-        <img :src="attachImageUrl(avatar)" alt="" >
+        <img :src="attachImageUrl(avatar)" alt="avatar">
       </div>
+      <el-avatar :size="16" src="https://empty" ref="https://www.baidu.com" style="background-color: #000000;position: absolute;left: 70px;top: 10px">
+        <img :src="getVipIconUrl(isMember)" alt="vip"/>
+      </el-avatar>
       <ul class="menu" style="background-color: rgb(51,51,51)">
         <li style="color: #ffffff" v-for="(item, index) in menuList" :key="index" @click="goMenuList(item.path)">{{item.name}}</li>
       </ul>
@@ -57,6 +60,7 @@ export default {
       'userId',
       'activeName',
       'avatar',
+      'isMember',
       'username',
       'loginIn'
     ])
