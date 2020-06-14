@@ -11,6 +11,7 @@ import SingerAlbum from '@/pages/SingerAlbum'
 import Search from '@/pages/Search'
 import Setting from '@/pages/Setting'
 import Lyric from '@/pages/Lyric'
+import OpenMembership from '../pages/OpenMembership'
 
 Vue.use(Router)
 
@@ -78,6 +79,11 @@ export default new Router({
       path: '/setting',
       name: 'setting',
       component: Setting
+    },
+    {
+      path: '/membership',
+      name: 'membership',
+      component: OpenMembership
     }
   ],
   scrollBehavior (to, from, savedPosition) {

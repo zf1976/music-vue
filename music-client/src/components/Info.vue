@@ -2,7 +2,7 @@
   <div class="info">
     <p class="title" style="color: #000000">编辑个人资料</p>
     <hr/>
-    <div class="personal" style="background-color: rgba(255,255,255,0.7);border-radius: 5px;">
+    <div class="personal" style="background-color: rgba(255,255,255,0.7);border-radius: 5px;width: auto">
       <el-form :model="registerForm" class="demo-ruleForm" label-width="80px">
         <el-form-item prop="username" label="用户名"  >
           <el-input  :disabled="true" v-model="registerForm.username" placeholder="用户名"></el-input>

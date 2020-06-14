@@ -86,7 +86,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
-import { setCollection, download, updateStatistical, deleteCollection } from '../api/index'
+import {
+  setCollection,
+  download,
+  updateStatistical,
+  deleteCollection,
+  getCollectionOfUser,
+  getSongOfId
+} from '../api/index'
 
 export default {
   name: 'play-bar',
@@ -167,6 +174,31 @@ export default {
     }, false)
   },
   methods: {
+    // 收藏的歌曲ID
+    getCollection (userId) {
+      getCollectionOfUser(userId)
+        .then(res => {
+          this.collection = res.data
+          // 通过歌曲ID获取歌曲信息
+          for (let item of this.collection) {
+            this.getCollectSongs(item.songId)
+          }
+          this.$store.commit('setListOfSongs', this.collectList)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    // 获取收藏的歌曲
+    getCollectSongs (id) {
+      getSongOfId(id)
+        .then(res => {
+          this.collectList.push(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     // 下载
     download () {
       if (!this.isMember) {
