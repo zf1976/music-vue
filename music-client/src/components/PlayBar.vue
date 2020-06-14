@@ -86,7 +86,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { mixin } from '../mixins'
-import { setCollection, download, updateStatistical, deleteCollection} from '../api/index'
+import { setCollection, download, updateStatistical, deleteCollection } from '../api/index'
 
 export default {
   name: 'play-bar',
@@ -107,6 +107,7 @@ export default {
     ...mapGetters([
       'loginIn', // 用户登录状态
       'userId', // 用户 id
+      'isMember', // 会员身份
       'isPlay', // 播放状态
       'playButtonUrl', // 播放状态的图标
       'id', // 音乐id
@@ -115,6 +116,7 @@ export default {
       'artist', // 歌手名
       'picUrl', // 歌曲图片
       'flagId',
+      'isPay',
       'downloads',
       'playCount',
       'curTime', // 当前音乐的播放位置
@@ -167,6 +169,21 @@ export default {
   methods: {
     // 下载
     download () {
+      if (!this.isMember) {
+        if (this.listOfSongs[this.listIndex].isPay) {
+          this.$alert('这是付费音乐', '', {
+            confirmButtonText: '确定',
+            center: true,
+            callback: action => {
+              this.$message({
+                type: 'info',
+                message: `tag: ${'请找管理员开通付费包'}`
+              })
+            }
+          })
+          return
+        }
+      }
       download(this.url)
         .then(res => {
           let content = res.data

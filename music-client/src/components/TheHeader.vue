@@ -28,7 +28,7 @@
       <div id="user">
         <img :src="attachImageUrl(avatar)" alt="avatar">
       </div>
-      <el-avatar :size="16" src="https://empty" ref="https://www.baidu.com" style="background-color: #000000;position: absolute;left: 70px;top: 10px">
+      <el-avatar :size="16" src="https://empty" ref="https://www.baidu.com" style="background-color: rgba(0,0,0,0);position: absolute;left: 70px;top: 10px">
         <img :src="getVipIconUrl(isMember)" alt="vip"/>
       </el-avatar>
       <ul class="menu" style="background-color: rgb(51,51,51)">
@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     goHome () {
+      this.$router.go(0)
       this.$router.push({path: '/'})
     },
     goPage (path, value) {

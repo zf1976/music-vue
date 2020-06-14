@@ -49,6 +49,11 @@ export default {
           icon: 'el-icon-document',
           index: 'songList',
           title: '歌单管理'
+        },
+        {
+          icon: 'el-icon-document',
+          index: 'api',
+          title: '接口文档'
         }
       ]
     }

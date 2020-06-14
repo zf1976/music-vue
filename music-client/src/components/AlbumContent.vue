@@ -23,7 +23,11 @@
               <use xlink:href="#icon-yinliang"></use>
             </svg>
           </span>
-          <span class="item-title">{{replaceFName(item.name)}}</span>
+          <span class="item-title">{{replaceFName(item.name)}}
+            <el-avatar v-if="item.isPay === true" :size="16" style="background-color: rgba(0,0,0,0)">
+              <img src="static/icon/pay.svg" alt="vip"/>
+            </el-avatar>
+          </span>
           <span class="item-intro">{{replaceLName(item.name)}}</span>
           <span class="item-intro">{{item.introduction}}</span>
           <span class="item-name">{{' '+item.downloads+' 次'}}</span>

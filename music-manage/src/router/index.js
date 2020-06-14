@@ -49,6 +49,11 @@ export default new Router({
           path: '/Collect',
           component: resolve => require(['../pages/CollectPage.vue'], resolve),
           meta: { title: 'Collect' }
+        },
+        {
+          path: '/Api',
+          component: resolve => require(['../pages/Api.vue'], resolve),
+          meta: { title: 'Api' }
         }
       ]
     },
